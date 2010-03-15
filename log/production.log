@@ -1,0 +1,241 @@
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2010-03-14 21:18:44) [GET]
+Rendering welcome/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-14 21:18:46) [GET]
+Rendering login/index
+Completed in 12ms (View: 10, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing LoginController#authenticate (for 127.0.0.1 at 2010-03-14 21:18:48) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"13ocy5guj/Y2kKB+uOoUFuuyNf9EfFi4MuLXTWQNdcU=", "login"=>{"password"=>"k0steln1k", "email"=>"nkostelnik@gmail.com"}}
+Redirected to http://localhost:3000/login/failure
+Completed in 2ms (DB: 0) | 302 Found [http://localhost/login/authenticate]
+
+
+Processing LoginController#failure (for 127.0.0.1 at 2010-03-14 21:18:48) [GET]
+Rendering login/index
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/failure]
+
+
+Processing SignupController#index (for 127.0.0.1 at 2010-03-14 21:18:51) [GET]
+Rendering signup/index
+Completed in 6ms (View: 3, DB: 0) | 200 OK [http://localhost/signup]
+
+
+Processing SignupController#create (for 127.0.0.1 at 2010-03-14 21:18:56) [POST]
+  Parameters: {"commit"=>"Signup", "authenticity_token"=>"13ocy5guj/Y2kKB+uOoUFuuyNf9EfFi4MuLXTWQNdcU=", "user"=>{"password_confirmed"=>"k0steln1k", "password"=>"k0steln1k", "email"=>"nkostelnik@gmail.com"}}
+Redirected to http://localhost:3000/projects
+Completed in 7ms (DB: 1) | 302 Found [http://localhost/signup/create]
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-03-14 21:18:56) [GET]
+Rendering template within layouts/main
+Rendering projects/index
+Completed in 5ms (View: 3, DB: 0) | 200 OK [http://localhost/projects]
+
+
+Processing ProjectsController#new (for 127.0.0.1 at 2010-03-14 21:18:58) [GET]
+Rendering template within layouts/main
+Rendering projects/new
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://localhost/projects/new]
+
+
+Processing ProjectsController#create (for 127.0.0.1 at 2010-03-14 21:19:13) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"13ocy5guj/Y2kKB+uOoUFuuyNf9EfFi4MuLXTWQNdcU=", "project"=>{"title"=>"Story Hub"}}
+Redirected to http://localhost:3000/projects/1
+Completed in 5ms (DB: 0) | 302 Found [http://localhost/projects]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:19:13) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 5ms (View: 4, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing ColumnsController#new (for 127.0.0.1 at 2010-03-14 21:19:16) [GET]
+  Parameters: {"project"=>"1"}
+Rendering columns/new
+Completed in 7ms (View: 3, DB: 0) | 200 OK [http://localhost/columns/new?project=1]
+
+
+Processing ColumnsController#create (for 127.0.0.1 at 2010-03-14 21:19:34) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"13ocy5guj/Y2kKB+uOoUFuuyNf9EfFi4MuLXTWQNdcU=", "column"=>{"title"=>"Ideas", "project_id"=>"1"}}
+Redirected to http://localhost:3000/projects/1
+Completed in 5ms (DB: 0) | 302 Found [http://localhost/columns]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:19:34) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 5ms (View: 4, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing ColumnsController#new (for 127.0.0.1 at 2010-03-14 21:19:36) [GET]
+  Parameters: {"project"=>"1"}
+Rendering columns/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://localhost/columns/new?project=1]
+
+
+Processing ColumnsController#create (for 127.0.0.1 at 2010-03-14 21:19:46) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"13ocy5guj/Y2kKB+uOoUFuuyNf9EfFi4MuLXTWQNdcU=", "column"=>{"title"=>"Features", "project_id"=>"1"}}
+Redirected to http://localhost:3000/projects/1
+Completed in 5ms (DB: 0) | 302 Found [http://localhost/columns]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:19:46) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 6ms (View: 4, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing ColumnsController#new (for 127.0.0.1 at 2010-03-14 21:19:47) [GET]
+  Parameters: {"project"=>"1"}
+Rendering columns/new
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/columns/new?project=1]
+
+
+Processing ColumnsController#create (for 127.0.0.1 at 2010-03-14 21:19:52) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"13ocy5guj/Y2kKB+uOoUFuuyNf9EfFi4MuLXTWQNdcU=", "column"=>{"title"=>"In Progress", "project_id"=>"1"}}
+Redirected to http://localhost:3000/projects/1
+Completed in 7ms (DB: 0) | 302 Found [http://localhost/columns]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:19:52) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 5ms (View: 4, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing ColumnsController#new (for 127.0.0.1 at 2010-03-14 21:19:53) [GET]
+  Parameters: {"project"=>"1"}
+Rendering columns/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://localhost/columns/new?project=1]
+
+
+Processing ColumnsController#create (for 127.0.0.1 at 2010-03-14 21:20:00) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"13ocy5guj/Y2kKB+uOoUFuuyNf9EfFi4MuLXTWQNdcU=", "column"=>{"title"=>"Inventory", "project_id"=>"1"}}
+Redirected to http://localhost:3000/projects/1
+Completed in 6ms (DB: 0) | 302 Found [http://localhost/columns]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:20:00) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 8ms (View: 6, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing ColumnsController#new (for 127.0.0.1 at 2010-03-14 21:20:01) [GET]
+  Parameters: {"project"=>"1"}
+Rendering columns/new
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://localhost/columns/new?project=1]
+
+
+Processing ColumnsController#create (for 127.0.0.1 at 2010-03-14 21:20:05) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"13ocy5guj/Y2kKB+uOoUFuuyNf9EfFi4MuLXTWQNdcU=", "column"=>{"title"=>"Done", "project_id"=>"1"}}
+Redirected to http://localhost:3000/projects/1
+Completed in 5ms (DB: 0) | 302 Found [http://localhost/columns]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:20:05) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 7ms (View: 5, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing StoriesController#new (for 127.0.0.1 at 2010-03-14 21:20:09) [GET]
+  Parameters: {"column"=>"1", "project"=>"1"}
+Rendering stories/new
+Completed in 6ms (View: 3, DB: 0) | 200 OK [http://localhost/stories/new?column=1&project=1]
+
+
+Processing StoriesController#create (for 127.0.0.1 at 2010-03-14 21:20:41) [POST]
+  Parameters: {"commit"=>"Create", "story"=>{"project_id"=>"1", "column_id"=>"1", "description"=>"As a User \r\nI Want a Common Style Throughout StoryHub\r\nSo That I can have  a good user experience"}, "authenticity_token"=>"13ocy5guj/Y2kKB+uOoUFuuyNf9EfFi4MuLXTWQNdcU="}
+Redirected to http://localhost:3000/projects/1
+Completed in 5ms (DB: 0) | 302 Found [http://localhost/stories]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:20:41) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 7ms (View: 5, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing StoriesController#update (for 127.0.0.1 at 2010-03-14 21:20:44) [PUT]
+  Parameters: {"story"=>{"column_id"=>"2"}, "id"=>"1"}
+Redirected to http://localhost:3000/stories/1
+Completed in 7ms (DB: 1) | 302 Found [http://localhost/stories/1]
+
+
+Processing StoriesController#show (for 127.0.0.1 at 2010-03-14 21:20:44) [GET]
+  Parameters: {"id"=>"1"}
+Rendering stories/show
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/stories/1]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:20:46) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-03-14 21:20:56) [GET]
+Rendering template within layouts/main
+Rendering projects/index
+Completed in 57ms (View: 2, DB: 0) | 200 OK [http://localhost/projects]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:20:58) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing ColumnsController#new (for 127.0.0.1 at 2010-03-14 21:21:14) [GET]
+  Parameters: {"project"=>"1"}
+Rendering columns/new
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/columns/new?project=1]
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-03-14 21:21:17) [GET]
+Rendering template within layouts/main
+Rendering projects/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/projects]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:21:19) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 9ms (View: 6, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing StoriesController#new (for 127.0.0.1 at 2010-03-14 21:21:20) [GET]
+  Parameters: {"column"=>"1", "project"=>"1"}
+Rendering stories/new
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/stories/new?column=1&project=1]
+
+
+Processing StoriesController#create (for 127.0.0.1 at 2010-03-14 21:21:44) [POST]
+  Parameters: {"commit"=>"Create", "story"=>{"project_id"=>"1", "column_id"=>"1", "description"=>"As a User\r\nI want to have an AJAX New Story experience\r\nSo That I dont have to leave the Wall page"}, "authenticity_token"=>"13ocy5guj/Y2kKB+uOoUFuuyNf9EfFi4MuLXTWQNdcU="}
+Redirected to http://localhost:3000/projects/1
+Completed in 5ms (DB: 0) | 302 Found [http://localhost/stories]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-03-14 21:21:44) [GET]
+  Parameters: {"id"=>"1"}
+Rendering template within layouts/main
+Rendering projects/show
+Completed in 7ms (View: 5, DB: 1) | 200 OK [http://localhost/projects/1]

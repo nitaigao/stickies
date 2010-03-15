@@ -1,0 +1,38 @@
+<%= javascript_include_tag "columns.js" %>
+
+<% content_for :header do %>
+	<h1 id="wall-title"><%= @project.title %></h1>
+<% end %>
+
+<div>
+	<p class="right">
+		 <%= link_to 'Add Column', :controller => 'columns', :action => 'new', :project => @project %>
+	</p>
+	<div class="clear"></div>
+	<div class="columns">
+	
+		<% @project.columns.each do |column| %>
+
+			<div id="<%= column.id %>" class="column">
+				<div class="right">
+					<%= link_to '+', :controller => 'stories', :action => 'new', :column => column, :project => @project %>
+				</div>
+				<div>
+					<h2 class="column-title"><%= column.title %></h2>
+				</div>
+				<div class="clear"></div>
+				<div>
+					<% column.stories.each do |story| %>
+						<div id="<%= story.id %>" class="story">
+							<%= simple_format(story.description) %>
+						</div>
+					<% end %>
+					<div class="clear"></div>
+				</div>
+			</div>
+	
+		<% end %>
+		<div class="clear"></div>
+	</div>
+	
+</div>
