@@ -34,6 +34,12 @@ class ProjectsController < ApplicationController
       format.xml  { render :xml => @project }
     end
   end
+  
+  # GET /projects/1/adduser
+  def adduser
+    @email = params[:email]
+    render :layout => false
+  end
 
   # GET /projects/1/edit
   def edit
@@ -58,11 +64,6 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def add_user 
-    #@user = User.find(params[:id])
-    #@project = Project.new(params[:project])
-        
-  end
 
   # PUT /projects/1
   # PUT /projects/1.xml
