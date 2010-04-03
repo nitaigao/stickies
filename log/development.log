@@ -14837,3 +14837,69 @@ Migrating to UsersProjects (20100316174639)
   [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("stories")[0m
   [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
   [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("users_projects")[0m
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2010-04-03 13:47:18) [GET]
+Rendering template within layouts/guest
+Rendering welcome/index
+Completed in 22ms (View: 17, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserController#login (for 127.0.0.1 at 2010-04-03 13:47:20) [GET]
+Rendering template within layouts/guest
+Rendering user/login
+Completed in 9ms (View: 8, DB: 0) | 200 OK [http://localhost/user/login]
+
+
+Processing UserController#authenticate (for 127.0.0.1 at 2010-04-03 13:47:21) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"oIlu9zaBId5gQJqWc0zXzvx7hkNLItx99aLkF0Egndg=", "login"=>{"password"=>"k0steln1k", "email"=>"nkostelnik@gmail.com"}}
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."password" = 'k0steln1k' AND "users"."email" = 'nkostelnik@gmail.com') LIMIT 1[0m
+Redirected to http://localhost:3000/projects
+Completed in 12ms (DB: 1) | 302 Found [http://localhost/user/authenticate]
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-04-03 13:47:21) [GET]
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/main
+Rendering projects/index
+  [4;35;1mProject Load (0.4ms)[0m   [0mSELECT * FROM "projects" INNER JOIN "projects_users" ON "projects".id = "projects_users".project_id WHERE ("projects_users".user_id = 1 ) [0m
+Completed in 79ms (View: 13, DB: 1) | 200 OK [http://localhost/projects]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-04-03 13:47:22) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mProject Load (0.1ms)[0m   [0mSELECT * FROM "projects" WHERE ("projects"."id" = 1) [0m
+Rendering template within layouts/main
+Rendering projects/show
+  [4;36;1mColumn Load (0.2ms)[0m   [0;1mSELECT * FROM "columns" WHERE ("columns".project_id = 1) [0m
+  [4;35;1mStory Load (0.1ms)[0m   [0mSELECT * FROM "stories" WHERE ("stories".column_id = 1) [0m
+Completed in 22ms (View: 14, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing StoriesController#new (for 127.0.0.1 at 2010-04-03 13:47:25) [GET]
+  Parameters: {"column"=>"1", "project"=>"1"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/main
+Rendering stories/new
+Completed in 17ms (View: 9, DB: 0) | 200 OK [http://localhost/stories/new?column=1&project=1]
+
+
+Processing StoriesController#create (for 127.0.0.1 at 2010-04-03 13:47:30) [POST]
+  Parameters: {"commit"=>"Create", "story"=>{"project_id"=>"1", "column_id"=>"1", "description"=>"Blah"}, "authenticity_token"=>"oIlu9zaBId5gQJqWc0zXzvx7hkNLItx99aLkF0Egndg="}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mStory Create (0.3ms)[0m   [0;1mINSERT INTO "stories" ("created_at", "project_id", "updated_at", "description", "column_id") VALUES('2010-04-03 12:47:30', 1, '2010-04-03 12:47:30', 'Blah', 1)[0m
+Redirected to http://localhost:3000/projects/1
+Completed in 12ms (DB: 0) | 302 Found [http://localhost/stories]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-04-03 13:47:30) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mProject Load (0.1ms)[0m   [0;1mSELECT * FROM "projects" WHERE ("projects"."id" = 1) [0m
+Rendering template within layouts/main
+Rendering projects/show
+  [4;35;1mColumn Load (0.2ms)[0m   [0mSELECT * FROM "columns" WHERE ("columns".project_id = 1) [0m
+  [4;36;1mStory Load (0.3ms)[0m   [0;1mSELECT * FROM "stories" WHERE ("stories".column_id = 1) [0m
+Completed in 19ms (View: 11, DB: 1) | 200 OK [http://localhost/projects/1]
