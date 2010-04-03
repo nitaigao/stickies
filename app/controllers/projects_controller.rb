@@ -17,18 +17,28 @@ class ProjectsController < ApplicationController
   # GET /projects/1.xml
   def show
     @project = Project.find(params[:id])
-
+    return if !auth_check(@project)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @project }
     end
+  end
+  
+  def auth_check(project)
+    user = User.find(session[:id])
+    if !user.projects.include?(project) then
+      redirect_to :action => :index
+      return false
+    end
+    return true
   end
 
   # GET /projects/new
   # GET /projects/new.xml
   def new
     @project = Project.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @project }
@@ -37,8 +47,19 @@ class ProjectsController < ApplicationController
   
   # GET /projects/1/adduser
   def adduser
+    @project = Project.find(params[:id])
+    return if !auth_check(@project)
+    
     @email = params[:email]
-    render :layout => false
+    user = User.find(:first, :conditions => "email = '#{@email}'")
+    
+    if !user or user.id == @user.id then
+      render :text => 'error', :layout => false
+    else
+      user.projects.push(@project)
+      user.save
+      render :layout => false
+    end    
   end
 
   # GET /projects/1/edit
@@ -52,6 +73,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     user = User.find(session[:id])
     user.projects.push(@project)
+    
     respond_to do |format|
       if user.save
         flash[:notice] = 'Project was successfully created.'
@@ -69,6 +91,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.xml
   def update
     @project = Project.find(params[:id])
+    return if !auth_check(@project)
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
@@ -86,6 +109,8 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.xml
   def destroy
     @project = Project.find(params[:id])
+    return if !auth_check(@project)
+    
     @project.destroy
 
     respond_to do |format|
