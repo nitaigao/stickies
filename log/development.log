@@ -14810,3 +14810,30 @@ Processing ColumnsController#new (for 127.0.0.1 at 2010-04-03 13:24:27) [GET]
 Rendering template within layouts/main
 Rendering columns/new
 Completed in 16ms (View: 8, DB: 0) | 200 OK [http://localhost/columns/new?project=1]
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100313160811)
+Migrating to CreateProjects (20100313163520)
+Migrating to CreateStories (20100313164011)
+Migrating to CreateColumns (20100313185256)
+Migrating to ProjectsUsers (20100316174004)
+Migrating to UsersProjects (20100316174639)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("columns")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("projects")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("projects_users")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("stories")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("users_projects")[0m
