@@ -1,5 +1,5 @@
 <div>
-	<% form_for :user, @user, :url => { :action => "create" } do |f| %>
+	<% form_for :registration, @registration, :url => { :action => "create" } do |f| %>
 	 	<%= f.error_messages %>
 		<div><label>Email Address: </label><%= f.text_field :email %></div>
 		<div><label>Password: </label><%= f.password_field :password %></div>

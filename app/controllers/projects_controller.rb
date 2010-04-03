@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = Project.all
+    user = User.find(session[:id])
+    @projects = user.projects
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,8 +16,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
-    
-    
     @project = Project.find(params[:id])
 
     respond_to do |format|
@@ -45,9 +44,10 @@ class ProjectsController < ApplicationController
   # POST /projects.xml
   def create
     @project = Project.new(params[:project])
-
+    user = User.find(session[:id])
+    user.projects.push(@project)
     respond_to do |format|
-      if @project.save
+      if user.save
         flash[:notice] = 'Project was successfully created.'
         format.html { redirect_to(@project) }
         format.xml  { render :xml => @project, :status => :created, :location => @project }
@@ -56,6 +56,12 @@ class ProjectsController < ApplicationController
         format.xml  { render :xml => @project.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  def add_user 
+    #@user = User.find(params[:id])
+    #@project = Project.new(params[:project])
+        
   end
 
   # PUT /projects/1

@@ -8,25 +8,29 @@ class UserController < ApplicationController
   end
   
   def create    
-    if (params['user']['password'] != params['user']['password_confirmed']) then
+    if (params['registration']['password'] != params['registration']['password_confirmed']) then
       flash[:notice] = 'Your passwords dont match'
       render :action => "signup" 
       return
     end
 
-    if User.find(:first, :conditions => { :email => params['user']['email'], :password => params['user']['password'] }) then
+    if User.find(:first, :conditions => { :email => params['registration']['email'], :password => params['registration']['password'] }) then
       flash[:notice] = 'User already exists.'
       render :action => "signup"
       return
     end
     
     user = User.new do |signup|
-      signup.email = params['user']['email']
-      signup.password = params['user']['password']
+      signup.email = params['registration']['email']
+      signup.password = params['registration']['password']
     end 
     user.save
     session[:id] = user.id
     redirect_to :controller => "projects"    
+  end
+  
+  def findall 
+    users = User.find(:all)
   end
   
   def authenticate
