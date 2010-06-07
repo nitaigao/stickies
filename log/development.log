@@ -17318,3 +17318,72 @@ Processing StoriesController#show (for 127.0.0.1 at 2010-04-03 19:11:49) [GET]
 Rendering template within layouts/main
 Rendering stories/show
 Completed in 68ms (View: 61, DB: 0) | 200 OK [http://localhost/stories/1]
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2010-04-08 10:04:56) [GET]
+Rendering template within layouts/guest
+Rendering welcome/index
+Completed in 37ms (View: 29, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserController#login (for 127.0.0.1 at 2010-04-08 10:04:58) [GET]
+Rendering template within layouts/guest
+Rendering user/login
+Completed in 12ms (View: 11, DB: 0) | 200 OK [http://localhost/user/login]
+
+
+Processing UserController#authenticate (for 127.0.0.1 at 2010-04-08 10:04:59) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"xrvfynVIxqnL2KDQs6t5XCqQ17hhk4TAbdWGcaqycwo=", "login"=>{"password"=>"k0steln1k", "email"=>"nkostelnik@gmail.com"}}
+  [4;36;1mUser Load (1.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."password" = 'k0steln1k' AND "users"."email" = 'nkostelnik@gmail.com') LIMIT 1[0m
+Redirected to http://localhost:3000/projects
+Completed in 72ms (DB: 1) | 302 Found [http://localhost/user/authenticate]
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-04-08 10:04:59) [GET]
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/main
+Rendering projects/index
+  [4;35;1mProject Load (1.8ms)[0m   [0mSELECT * FROM "projects" INNER JOIN "projects_users" ON "projects".id = "projects_users".project_id WHERE ("projects_users".user_id = 1 ) [0m
+Completed in 32ms (View: 19, DB: 2) | 200 OK [http://localhost/projects]
+
+
+Processing ProjectsController#show (for 127.0.0.1 at 2010-04-08 10:05:05) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mProject Load (0.1ms)[0m   [0mSELECT * FROM "projects" WHERE ("projects"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mProject Load (0.1ms)[0m   [0mSELECT "projects".id FROM "projects" INNER JOIN "projects_users" ON "projects".id = "projects_users".project_id WHERE ("projects"."id" = 1) AND ("projects_users".user_id = 1 ) LIMIT 1[0m
+Rendering template within layouts/main
+Rendering projects/show
+  [4;36;1mColumn Load (0.8ms)[0m   [0;1mSELECT * FROM "columns" WHERE ("columns".project_id = 1) [0m
+  [4;35;1mStory Load (0.2ms)[0m   [0mSELECT * FROM "stories" WHERE ("stories".column_id = 1) [0m
+Completed in 30ms (View: 19, DB: 1) | 200 OK [http://localhost/projects/1]
+
+
+Processing WelcomeController#index (for 127.0.0.1 at 2010-06-07 21:34:02) [GET]
+Rendering template within layouts/guest
+Rendering welcome/index
+Completed in 91ms (View: 83, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserController#login (for 127.0.0.1 at 2010-06-07 21:34:04) [GET]
+Rendering template within layouts/guest
+Rendering user/login
+Completed in 12ms (View: 9, DB: 0) | 200 OK [http://localhost/user/login]
+
+
+Processing UserController#authenticate (for 127.0.0.1 at 2010-06-07 21:34:20) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"uOvTJ5JOXba4+U5JYJJKPQEmm43jbdllPPPHRIeU7kQ=", "login"=>{"password"=>"k0steln1k", "email"=>"nkostelnik@gmail.com"}}
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."password" = 'k0steln1k' AND "users"."email" = 'nkostelnik@gmail.com') LIMIT 1[0m
+Redirected to http://localhost:3000/projects
+Completed in 15ms (DB: 1) | 302 Found [http://localhost/user/authenticate]
+
+
+Processing ProjectsController#index (for 127.0.0.1 at 2010-06-07 21:34:20) [GET]
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/main
+Rendering projects/index
+  [4;35;1mProject Load (0.4ms)[0m   [0mSELECT * FROM "projects" INNER JOIN "projects_users" ON "projects".id = "projects_users".project_id WHERE ("projects_users".user_id = 1 ) [0m
+Completed in 28ms (View: 17, DB: 1) | 200 OK [http://localhost/projects]
