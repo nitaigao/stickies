@@ -1,0 +1,43 @@
+=rounded-corners(!size)
+  -moz-border-radius= !size
+  -webkit-border-radius= !size
+  border-radius= !size
+
+=shadow(!horizontal_offset, !vertical_offset, !blur_radius, !colour)
+  -webkit-box-shadow= !horizontal_offset !vertical_offset !blur_radius !colour
+  -moz-box-shadow= !horizontal_offset !vertical_offset !blur_radius !colour
+
+=linear-gradient(!from, !to)
+  background-color= !from
+  background= -webkit-gradient(linear, 0% 0%, 0% 100%, from(!from), to(!to))
+  background= -moz-linear-gradient(top, !from, !to)
+
+=button(!from, !to, !text_color)
+  +rounded-corner(5px)
+  +linear-gradient(!from, !to)
+  border= 1px solid !to
+  padding: 3px 5px
+  color= !text_color
+  margin-right: 10px
+
+
+body
+  font-family: "Lucida Grande", Lucida, Verdana, sans-serif
+  color: white
+  font-size: 12px
+  background-color: #4ECDC4
+  
+#header
+  h4
+    font-size: 5em
+    
+#content_body
+  +rounded-corners(10px)
+  +shadow(2px, 2px, 5px, #000000)
+  background-color: #556270
+  height: 500px
+  padding: 15px
+  
+#search
+  height: 30px
+  width: 300px

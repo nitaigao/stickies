@@ -1,0 +1,12 @@
+gems:
+  - name: sinatra
+    install_options: --no-ri --no-rdoc
+  - name: sequel
+    install_options: --no-ri --no-rdoc
+    version: '>= 2.12.0'
+  - name: haml
+    install_options: --no-ri --no-rdoc
+  - name: rest-client
+    install_options: --no-ri --no-rdoc
+  - name: json-jruby
+    install_options: --no-ri --no-rdoc
