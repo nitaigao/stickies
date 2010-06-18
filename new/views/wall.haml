@@ -1,0 +1,11 @@
+%a{:href => "/walls/#{wall.url_name}/admin"} Admin
+- for column in wall.columns
+  %p= column.title
+  %a{:href => "/walls/#{wall.url_name}/columns/#{column.id}/stories/new"} Add Story
+  - for story in column.stories
+    %p= story.title
+    %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
+      %p= column.title
+      %input(type="hidden" name="_method" value="delete")
+      %input(type="submit" value="Remove")
+    

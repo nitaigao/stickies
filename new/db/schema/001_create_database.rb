@@ -10,7 +10,8 @@ class CreateDatabase < Sequel::Migration
     
     create_table(:walls) do
       primary_key :id
-      String :title
+      String :name
+      String :wall_type
     end
     
     create_table(:users_walls) do
@@ -18,11 +19,27 @@ class CreateDatabase < Sequel::Migration
       Integer :user_id
       Integer :wall_id
     end
+    
+    create_table(:columns) do
+      primary_key :id
+      foreign_key :wall_id
+      String :title
+    end
+    
+    create_table(:stories) do
+      primary_key :id
+      Integer :column_id
+      String :title
+    end
 
   end
 
   def down
     drop_table(:users)
+    drop_table(:walls)
+    drop_table(:users_walls)
+    drop_table(:columns)
+    drop_table(:stories)
   end
   
 end
