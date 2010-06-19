@@ -1,11 +1,34 @@
-%a{:href => "/walls/#{wall.url_name}/admin"} Admin
+.grid_1.prefix_11
+  %a{:href => "/walls/#{wall.url_name}/admin"} Admin
 - for column in wall.columns
-  %p= column.title
-  %a{:href => "/walls/#{wall.url_name}/columns/#{column.id}/stories/new"} Add Story
-  - for story in column.stories
-    %p= story.title
-    %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
-      %p= column.title
-      %input(type="hidden" name="_method" value="delete")
-      %input(type="submit" value="Remove")
-    
+  .grid_2
+    %span= column.title
+    %a{:href => "/walls/#{wall.url_name}/columns/#{column.id}/stories/new"} Add Story
+    %ul{:id => "column_#{column.id}", :class => "column"}
+      - for story in column.stories
+        %li.story.ui-state-default{:id => "story_#{story.id}"}
+          %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
+            %span= story.title
+            %input(type="hidden" name="_method" value="delete")
+            %input(type="submit" value="Remove")
+
+:javascript
+  $(function() {
+    var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}
+    for (var i in column_ids) {
+      $(column_ids[i]).sortable({
+        placeholder: 'ui-state-highlight',
+        connectWith: '.column',
+        remove: function(event, ui) {
+          console.log(event)
+        },
+        receive: function(event, ui) {
+          console.log(event)
+        },
+        stop: function(event, ui) {
+          var position = ui.item.parent().children().index(ui.item)
+        }
+      });
+      $(column_ids[i]).disableSelection();
+    }
+  });

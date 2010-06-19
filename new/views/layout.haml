@@ -1,11 +1,13 @@
 !!! 5
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
-    %title Energy... Wiggle wiggle
+    %title StoryHub
     %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/reset.css")
     %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/base.css")
     -#%link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/text.css")
     %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/960.css")
+    %script{:type => "text/javascript",:src  => "/javascripts/jquery-1.4.2.min.js"}
+    %script{:type => "text/javascript",:src  => "/javascripts/jquery-ui-1.8.2.custom.min.js"}
   %body
     #header
       .container_12
@@ -14,8 +16,6 @@
             StoryHub
         .grid_5  
           #controls
-            %a#login(href='login') Login
-            %a#signup(href='signup') Signup        
 
     #content.container_12
       .grid_12

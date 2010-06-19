@@ -1,1 +1,4 @@
 %a(href="/walls/new") New Wall
+- for wall in user.walls
+  %p
+    %a{:href=>"/walls/#{wall.url_name}/"}= wall.name

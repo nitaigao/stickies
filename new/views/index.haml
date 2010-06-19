@@ -1,6 +1,4 @@
-%form{:action => '/search' }
-  %p
-    %label{:for => "query"} Search Walls
-    %input#search{:type => "text", :name => "query"}
-  %p
-    %button Search
+%form(action='/login' method='POST')
+  %label(for='openid') OpenID
+  %input(type='text' name='openid')
+  %input(type='submit' value='Login')

@@ -32,7 +32,7 @@ def consumer
 end
 
 def open_id
-  redirect '/login' if !session.has_key?(:open_id)
+  redirect '/' if !session.has_key?(:open_id)
 #  redirect '/login' if not User[session[:open_id]]  
   session[:open_id]
 end
@@ -42,22 +42,22 @@ def user
 end
 
 get '/' do
-  open_id
   haml :index
 end
 
-get '/login/?' do
-  haml :login
+get '/logout/?' do
+  session.delete(:open_id)
+  redirect('/')
 end
 
 post '/login/?' do  
   response = consumer.begin(params[:openid])
   response.add_extension_arg('sreg','required','nickname,email')
-  openid_url = response.redirect_url('', 'http://localhost:9393/loggedin')
+  openid_url = response.redirect_url('', "#{request.scheme}://#{request.host}:#{request.port}/login")
   redirect openid_url
 end
 
-get '/loggedin/?' do
+get '/login/?' do
   response = consumer.complete(params, request.url)
   
   case response.status
@@ -78,7 +78,7 @@ get '/loggedin/?' do
 end
 
 get '/dashboard/?' do
-  haml :dashboard, :locala => { :walls => user.walls }
+  haml :dashboard, :locala => { :user => user }
 end
 
 get '/walls/new/?' do
