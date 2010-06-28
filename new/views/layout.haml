@@ -5,18 +5,12 @@
     %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/reset.css")
     %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/base.css")
     -#%link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/text.css")
-    %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/960.css")
+    -#%link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/960.css")
+    %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/grid.css")
     %script{:type => "text/javascript",:src  => "/javascripts/jquery-1.4.2.min.js"}
     %script{:type => "text/javascript",:src  => "/javascripts/jquery-ui-1.8.2.custom.min.js"}
   %body
-    #header
-      .container_12
-        .grid_7
-          %h4 
-            StoryHub
-        .grid_5  
-          #controls
-
-    #content.container_12
-      .grid_12
-        #content_body= yield
+    #header.container_16
+      .grid_16
+        %h4 StoryHub
+    #content.container_16= yield

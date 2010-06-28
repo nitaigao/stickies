@@ -2,6 +2,14 @@
   -moz-border-radius= !size
   -webkit-border-radius= !size
   border-radius= !size
+  
+=rounded-top-corners(!size)
+  -moz-border-radius-topright= !size
+  -webkit-border-top-right-radius= !size
+  border-top-right-radius= !size
+  -moz-border-radius-topleft= !size
+  -webkit-border-top-left-radius= !size
+  border-top-left-radius= !size
 
 =shadow(!horizontal_offset, !vertical_offset, !blur_radius, !colour)
   -webkit-box-shadow= !horizontal_offset !vertical_offset !blur_radius !colour
@@ -20,17 +28,34 @@
   color= !text_color
   margin-right: 10px
 
+.clear
+  clear: both
+
+html, body
+  height: 100%
 
 body
   font-family: "Lucida Grande", Lucida, Verdana, sans-serif
   color: white
   font-size: 12px
-  background-color: #4ECDC4
+  background-color: #575C4D
+  height: 100%
+  
+a
+  color: white
+  text-decoration: none
+  
+a:hover
+  color: white
+  text-decoration: underline
   
 #header
   h4
     font-size: 5em
-    
+  
+#content
+  height: 100%
+  
 #content_body
   +rounded-corners(10px)
   +shadow(2px, 2px, 5px, #000000)
@@ -43,7 +68,51 @@ body
   width: 300px
   
 .highlight
-  background-color: red
+  background-color: #C6CEFF
+  +rounded-corners(5px)
   
+.sortable, .column_contents, .column_stories
+  height: 100%
+
+.columns
+  margin: 0px auto
+
 .column
-  min-height: 200px
+  +shadow(0px, 0px, 1px, black)
+  height: 100%
+  +rounded-corners(5px)
+  
+.column_contents
+  background-color: #919299
+  +rounded-corners(5px)  
+
+.column_stories
+  margin-left: 10px
+  margin-right: 10px
+  
+.column_controls
+  float: right
+  
+.column_title 
+  h3
+    font-size: 1.3em
+    color: #fff
+    text-align: center
+  margin-bottom: 10px
+  background-color: #757D73
+  +rounded-top-corners(5px)
+  +shadow(0px, 0px, 2px, black)
+  
+.story
+  margin: 0px 0px 20px 0px
+  +rounded-corners(5px)
+  padding: 5px
+  cursor: pointer
+  word-wrap: break-word
+  +shadow(0px, 0px, 2px, black)
+
+.story_hover
+  +shadow(0px, 0px, 3px, black)
+  
+.story_orange
+  background-color: #ADB0CF

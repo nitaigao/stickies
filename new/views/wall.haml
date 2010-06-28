@@ -1,24 +1,27 @@
-.grid_1.prefix_11
+.grid_2.prefix_14
+  %a{:href => "/walls/#{wall.url_name}/columns/#{wall.columns.first.id}/stories/new"} Add Story
   %a{:href => "/walls/#{wall.url_name}/admin"} Admin
 - for column in wall.columns
-  .grid_2.column
-    %span= column.title
-    %a{:href => "/walls/#{wall.url_name}/columns/#{column.id}/stories/new"} Add Story
-    %ul{:id => "column_#{column.id}", :class => "column"}
-      - for story in column.stories.sort
-        %li.story.ui-state-default{:id => "story_#{story.id}"}
-          %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
-            %span= story.title
-            %input(type="hidden" name="_method" value="delete")
-            %input(type="submit" value="Remove")
-
+  %div{:class => "column", :style => "margin: 0 10px; float: left; width: #{(100 / wall.columns.length)-1.8}%;"}
+    .column_contents
+      .column_title
+        %h3= column.title
+      .column_stories
+        %ul{:id => "column_#{column.id}", :class => "sortable"}
+          - for story in column.stories.sort
+            %li.story.story_orange{:id => "story_#{story.id}"}
+              %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
+                %p= story.title
+                %input(type="hidden" name="_method" value="delete")
+                /%input(type="submit" value="Remove")
 :javascript
   $(function() {
     var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}
     for (var i in column_ids) {
       $(column_ids[i]).sortable({
-        placeholder: '.highlight',
-        connectWith: '.column',
+        placeholder: 'highlight',
+        forcePlaceholderSize: true,
+        connectWith: '.sortable',
         remove: function(event, ui) {
           console.log(event)
         },
@@ -28,10 +31,18 @@
         stop: function(event, ui) {
           var position = ui.item.parent().children().index(ui.item)
           $.post("/walls/#{wall.url_name}/columns/1/stories/1", function(data){
-          
+      
           });
         }
       });
       $(column_ids[i]).disableSelection();
     }
+    
+    $("li.story").hover(function(){
+        $(this).addClass('story_hover');
+      }, function() {
+        $(this).removeClass('story_hover');
+      });
+    
+    
   });
