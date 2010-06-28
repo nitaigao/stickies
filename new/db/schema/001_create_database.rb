@@ -30,6 +30,7 @@ class CreateDatabase < Sequel::Migration
       primary_key :id
       Integer :column_id
       String :title
+      String :index
     end
 
   end

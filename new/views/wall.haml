@@ -5,7 +5,7 @@
     %span= column.title
     %a{:href => "/walls/#{wall.url_name}/columns/#{column.id}/stories/new"} Add Story
     %ul{:id => "column_#{column.id}", :class => "column"}
-      - for story in column.stories
+      - for story in column.stories.sort
         %li.story.ui-state-default{:id => "story_#{story.id}"}
           %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
             %span= story.title
@@ -27,6 +27,9 @@
         },
         stop: function(event, ui) {
           var position = ui.item.parent().children().index(ui.item)
+          $.post("/walls/#{wall.url_name}/columns/1/stories/1", function(data){
+          
+          });
         }
       });
       $(column_ids[i]).disableSelection();
