@@ -1,7 +1,7 @@
 .grid_1.prefix_11
   %a{:href => "/walls/#{wall.url_name}/admin"} Admin
 - for column in wall.columns
-  .grid_2
+  .grid_2.column
     %span= column.title
     %a{:href => "/walls/#{wall.url_name}/columns/#{column.id}/stories/new"} Add Story
     %ul{:id => "column_#{column.id}", :class => "column"}
@@ -17,7 +17,7 @@
     var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}
     for (var i in column_ids) {
       $(column_ids[i]).sortable({
-        placeholder: 'ui-state-highlight',
+        placeholder: '.highlight',
         connectWith: '.column',
         remove: function(event, ui) {
           console.log(event)
