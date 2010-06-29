@@ -1,8 +1,8 @@
-.grid_2.prefix_14
+.grid_2.prefix_14.wall_controls
   %a{:href => "/walls/#{wall.url_name}/columns/#{wall.columns.first.id}/stories/new"} Add Story
   %a{:href => "/walls/#{wall.url_name}/admin"} Admin
 - for column in wall.columns
-  %div{:class => "column", :style => "margin: 0 10px; float: left; width: #{(100 / wall.columns.length)-1.8}%;"}
+  %div{:class => "column", :style => "margin: 0 10px; float: left; width: #{(100 / wall.columns.length)-1.6}%;"}
     .column_contents
       .column_title
         %h3= column.title
