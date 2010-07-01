@@ -15,7 +15,7 @@
               .column_stories
                 %ul{:id => "column_#{column.id}", :class => "sortable"}
                   - for story in column.stories.sort
-                    %li.story.story_orange{:id => "story_#{story.id}"}
+                    %li.story.story_orange{:id => "#{story.id}"}
                       %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
                         %p= story.title
                         %input(type="hidden" name="_method" value="delete")
@@ -28,16 +28,16 @@
         placeholder: 'highlight',
         forcePlaceholderSize: true,
         connectWith: '.sortable',
-        remove: function(event, ui) {
-          console.log(event)
-        },
-        receive: function(event, ui) {
-          console.log(event)
-        },
         stop: function(event, ui) {
-          var position = ui.item.parent().children().index(ui.item)
-          $.post("/walls/#{wall.url_name}/columns/1/stories/1", function(data){
-      
+          var index = $(ui.item).parent().children().index(ui.item)
+          var story_id = $(ui.item).attr('id')
+          var old_column_id = $(event.target).attr('id').replace('column_', '');
+          var new_column_id = $(ui.item).parent().attr('id').replace('column_', '');
+
+          var url = '/walls/#{wall.name}/columns/' + old_column_id + '/stories/' + story_id
+          var post_data = '_method=PUT&story[index]=' + index + '&story[column_id]=' + new_column_id
+
+          $.post(url, post_data, function(data) {
           });
         }
       });
