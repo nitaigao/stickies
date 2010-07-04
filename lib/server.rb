@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-require 'content_for'
 require 'haml'
 require 'restclient'
 require 'json'
@@ -12,6 +11,7 @@ require "openid/store/filesystem"
 
 DB = Sequel.connect("mysql://localhost/storyhub_dev?user=root")
 
+require File.join(File.dirname(__FILE__), "content_for")
 require File.join(File.dirname(__FILE__), "user")
 require File.join(File.dirname(__FILE__), "wall")
 require File.join(File.dirname(__FILE__), "column")
