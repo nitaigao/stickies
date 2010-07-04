@@ -1,0 +1,7 @@
+- content_for :nav do
+  %a(href="/walls/new") New Wall
+
+.grid_16
+  - for wall in user.walls
+    %p
+      %a{:href=>"/walls/#{wall.url_name}/"}= wall.name
