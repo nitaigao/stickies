@@ -22,7 +22,7 @@ class CreateDatabase < Sequel::Migration
     
     create_table(:columns) do
       primary_key :id
-      foreign_key :wall_id
+      Integer :wall_id
       String :title
     end
     
