@@ -1,7 +1,0 @@
-<div>
-	<% form_for :login, @login, :url => { :action => "authenticate" } do |f| %>
-		<div><label>Email Address: </label><%= f.text_field :email %></div>
-		<div><label>Password: </label><%= f.password_field :password %></div>
-		<%= submit_tag 'Login' %>
-	<% end %>
-</div>

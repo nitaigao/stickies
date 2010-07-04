@@ -1,9 +1,0 @@
-<div>
-	<% form_for :registration, @registration, :url => { :action => "create" } do |f| %>
-	 	<%= f.error_messages %>
-		<div><label>Email Address: </label><%= f.text_field :email %></div>
-		<div><label>Password: </label><%= f.password_field :password %></div>
-		<div><label>Confirm Password: </label><%= f.password_field :password_confirmed %></div>
-		<%= submit_tag 'Signup' %>
-	<% end %>
-</div>

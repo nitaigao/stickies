@@ -1,8 +1,0 @@
-*.swp
-.sass-cache
-public/stylesheets/reset.css
-public/stylesheets/base.css
-tags
-energy.war
-tmp
-log
