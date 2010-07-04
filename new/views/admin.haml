@@ -1,4 +1,5 @@
-%a{:href => "/walls/#{wall.url_name}/"} Wall
+- content_for :nav do
+  %a{:href => "/walls/#{wall.url_name}/"} Wall
 - for column in wall.columns
   %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}", :method => "POST"}
     %p= column.title
@@ -8,3 +9,6 @@
   %label(for='new_column[title]') Title
   %input(type='text' id="new_column[title]" name="new_column[title]")
   %input(type="submit" value="Add")
+%form{:Action => "/walls/#{wall.url_name}", :method => "POST"}
+  %input(type='hidden' name="_method" value="DELETE")
+  %input(type="submit" value="Delete Wall")

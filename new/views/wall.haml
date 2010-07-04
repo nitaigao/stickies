@@ -1,8 +1,9 @@
-.grid_2.prefix_14.wall_controls
-  %a{:href => "/walls/#{wall.url_name}/columns/#{wall.columns.first.id}/stories/new"} Add Story
-  |
+- content_for :nav do
   %a{:href => "/walls/#{wall.url_name}/admin"} Admin
-%div.clear
+  |
+  %a{:href => "/dashboard"} Dashboard
+  |
+  %a{:href => "/walls/#{wall.url_name}/columns/#{wall.columns.first.id}/stories/new"} Add Story
 %div.max_size
   %table.max_size
     %tr
@@ -49,6 +50,4 @@
       }, function() {
         $(this).removeClass('story_hover');
       });
-    
-    
   });

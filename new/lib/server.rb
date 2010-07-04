@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/content_for'
 require 'haml'
 require 'restclient'
 require 'json'
@@ -89,13 +90,19 @@ post '/walls/new/?' do
   wall = Wall.create(params[:new_wall])
   wall.add_user(user)
   wall.save
-  redirect("/walls/#{wall.name}/")
+  redirect("/walls/#{wall.url_name}/")
 end
 
 get '/walls/:name/?' do
   user = User.first(:open_id => open_id)
   redirect('/dashboard/') if user.walls.reject { |wall| wall.name != params[:name] }.empty?
   haml :wall, :locals => { :wall => user.walls.select { |wall| wall.name == params[:name] }.first }
+end
+
+delete '/walls/:name/?' do
+  wall = user.walls.select { |wall| wall.name == params[:name] }.first
+  wall.delete
+  redirect("/dashboard/")
 end
 
 get '/walls/:name/admin/?' do

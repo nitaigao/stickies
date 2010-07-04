@@ -4,13 +4,13 @@
     %title StoryHub
     %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/reset.css")
     %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/base.css")
-    -#%link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/text.css")
-    -#%link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/960.css")
     %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/grid.css")
     %script{:type => "text/javascript",:src  => "/javascripts/jquery-1.4.2.min.js"}
     %script{:type => "text/javascript",:src  => "/javascripts/jquery-ui-1.8.2.custom.min.js"}
   %body
-    #header.container_16
+    %header.container_16
       .grid_16
         %h4 StoryHub
-    #content.container_16= yield
+    %nav.container_16
+      .grid_4.prefix_12.wall_controls= yield_content :nav
+    %article.container_16= yield
