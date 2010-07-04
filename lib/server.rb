@@ -29,7 +29,7 @@ configure do
 end
 
 def consumer
-  @consumer ||= OpenID::Consumer.new(session, OpenID::Store::Filesystem.new("#{File.dirname(__FILE__)}/tmp/openid"))  
+  @consumer ||= OpenID::Consumer.new(session, OpenID::Store::Filesystem.new("#{File.dirname(__FILE__)}/../tmp/openid"))  
 end
 
 def open_id
