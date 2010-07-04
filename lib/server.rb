@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require 'sinatra/content_for'
+require 'content_for'
 require 'haml'
 require 'restclient'
 require 'json'
