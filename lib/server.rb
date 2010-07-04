@@ -10,7 +10,7 @@ require "sequel"
 require "openid"
 require "openid/store/filesystem"
 
-DB = Sequel.connect("mysql://localhost/storyhub_dev?user=root")
+DB = Sequel.connect(ENV['DATABASE_URL'] || "mysql://localhost/storyhub_dev?user=root")
 
 require File.join(File.dirname(__FILE__), "user")
 require File.join(File.dirname(__FILE__), "wall")
