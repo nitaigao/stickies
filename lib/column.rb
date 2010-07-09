@@ -5,4 +5,8 @@ class Column < Sequel::Model
   def url_title
     URI.escape(self.title)
   end
+
+  def <=>(other)
+    self.order <=> other.order
+  end
 end

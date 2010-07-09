@@ -111,8 +111,8 @@ get '/walls/:name/admin/?' do
 end 
 
 post '/walls/:name/columns/new/?' do
-  column = Column.create(params[:new_column])
   wall = user.walls.select { |wall| wall.name == params[:name] }.first
+  column = Column.create(params[:new_column].merge(:order => wall.columns.size))
   wall.add_column(column)
   wall.save
   redirect("/walls/#{params[:name]}/admin/")

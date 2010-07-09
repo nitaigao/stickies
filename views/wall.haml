@@ -7,7 +7,7 @@
 %div.max_size
   %table.max_size
     %tr
-      - for column in wall.columns
+      - for column in wall.columns.sort
         %td.column_container.max_height{:style => "width: #{100 / wall.columns.size}%"} 
           .column.max_size
             .column_contents
@@ -20,7 +20,6 @@
                       %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
                         %p= story.title
                         %input(type="hidden" name="_method" value="delete")
-                        /%input(type="submit" value="Remove")
 :javascript
   $(function() {
     var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}

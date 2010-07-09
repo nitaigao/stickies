@@ -6,12 +6,13 @@ require "sequel/extensions/migration"
 
 task :default => :test
 
+DB = Sequel.connect("mysql://localhost/storyhub_dev?user=root")
+
 namespace :db do
   desc "Perform migration using migrations in schema/migrations"
   task :migrate do
-    db = Sequel.connect("mysql://localhost/storyhub_dev?user=root")
     version = (ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
-    Sequel::Migrator.apply(db, "db/schema", version, nil)
+    Sequel::Migrator.apply(DB, "db/schema", version, nil)
   end
   
 end
