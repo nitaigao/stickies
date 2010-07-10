@@ -13,7 +13,7 @@ function story_blur() {
 function story_click() {
    var textarea = $("<textarea class='editable_area'>" + $(this).html().replace(/<br>/g, "\n") + "</textarea>")
    $(this).after(textarea)
-   textarea.autogrow();
+   textarea.autoResize();
    textarea.focus()
    textarea.blur(story_blur)
    $(this).remove()
