@@ -1,7 +1,7 @@
 - content_for :nav do
   %a{:href => "/walls/#{wall.url_name}/admin"} Admin
   |
-  %a{:href => "/walls/#{wall.url_name}/columns/#{wall.columns.first.id}/stories/new"} Add Story
+  %a{:href => "/walls/#{wall.url_name}/columns/#{wall.columns.sort.first.id}/stories/new"} Add Story
 %div.grid_16.max_size
   %table.max_size
     %tr
