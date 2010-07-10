@@ -8,7 +8,7 @@ body {
   font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
   color: white;
   font-size: 12px;
-  background-color: #575c4d;
+  background-color: #575C4D;
   height: 100%; }
 
 a {
@@ -43,10 +43,11 @@ nav.header {
   width: 300px; }
 
 .highlight {
-  background-color: #c6ceff;
+  background-color: #C6CEFF;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  margin: 0px 0px 20px 0px; }
 
 .sortable, .column_contents, .column_stories {
   height: 100%; }
@@ -80,7 +81,7 @@ nav.header {
 
 .column_title {
   margin-bottom: 10px;
-  background-color: #757d73;
+  background-color: #757D73;
   -moz-border-radius-topright: 5px;
   -webkit-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
@@ -91,7 +92,7 @@ nav.header {
   -moz-box-shadow: 0px 0px 2px black; }
   .column_title h3 {
     font-size: 1.3em;
-    color: white;
+    color: #fff;
     text-align: center; }
 
 .story {
@@ -99,18 +100,20 @@ nav.header {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  padding: 5px;
   cursor: pointer;
   word-wrap: break-word;
   -webkit-box-shadow: 0px 0px 2px black;
   -moz-box-shadow: 0px 0px 2px black; }
+
+.storytext {
+  padding: 5px; }
 
 .story_hover {
   -webkit-box-shadow: 0px 0px 3px black;
   -moz-box-shadow: 0px 0px 3px black; }
 
 .story_orange {
-  background-color: #adb0cf; }
+  background-color: #ADB0CF; }
 
 .max_size {
   width: 100%;

@@ -14,8 +14,8 @@
               .column_stories
                 %ul{:id => "column_#{column.id}", :class => "sortable"}
                   - for story in column.stories.sort
-                    %li.story.story_orange{:id => "#{story.id}"}
-                      %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
+                    %li.story.highlight.story_orange{:id => "#{story.id}"}
+                      %form.storytext{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
                         %p= story.title
                         %input(type="hidden" name="_method" value="delete")
 :javascript
