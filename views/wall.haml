@@ -21,7 +21,7 @@
                   - for story in column.stories.sort
                     %li.story.highlight.story_orange{:id => "#{story.id}"}
                       %form.storytext{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
-                        %p.editable= story.title
+                        %p.editable=  story.title_html
                         %input(type="hidden" name="_method" value="delete")
           %div &nbsp;
 :javascript
