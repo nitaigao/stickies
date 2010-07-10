@@ -131,10 +131,8 @@ end
 
 post '/walls/:wall_name/columns/:column_id/stories/new' do
   wall = user.walls.select { |wall| wall.name == params[:wall_name] }.first
-  column = wall.columns.select{|column| column.id == params[:column_id].to_i}.first
-  values = {:index => column.stories.length}
-  values.update(params[:new_story])
-  story = Story.create(values)
+  column = wall.columns.select{|column| column.id == params[:column_id].to_i}.sort.first
+  story = Story.create(params[:new_story].merge({:index => column.stories.length}))
   column.add_story(story)
   column.save
   redirect("/walls/#{wall.name}/")
