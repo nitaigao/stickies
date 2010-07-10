@@ -34,7 +34,6 @@ end
 
 def open_id
   redirect '/' if !session.has_key?(:open_id)
-#  redirect '/login' if not User[session[:open_id]]  
   session[:open_id]
 end
 
@@ -43,6 +42,7 @@ def user
 end
 
 get '/' do
+  redirect '/dashboard' if session.has_key?(:open_id)
   haml :index
 end
 
