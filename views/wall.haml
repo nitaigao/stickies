@@ -18,6 +18,7 @@
                       %form.storytext{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
                         %p= story.title
                         %input(type="hidden" name="_method" value="delete")
+            %div &nbsp;
 :javascript
   $(function() {
     var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}
