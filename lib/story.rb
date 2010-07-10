@@ -6,7 +6,7 @@ class Story < Sequel::Model
   end
   
   def title_html
-    title.to_s.
+    (title.to_s.length == 0) ? 'No Content' : title.to_s.
       gsub("&", "&amp;").
       gsub("<", "&lt;").
       gsub(">", "&gt;").

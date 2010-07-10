@@ -1,13 +1,15 @@
 function story_blur() {
-   var paragraph = "<p class='editable'>" + $(this).val().replace(/\n/g, "<br>") + "</p>"
-   $(this).after(paragraph)
-   $(this).parent().children("p.editable").click(story_click)
-   
-   var url = $(this).parent().attr('action')
-   var post_data = '_method=PUT&story[title]=' + $(this).val()
-   $.post(url, post_data)
-   
-   $(this).remove()
+  
+  var content = $(this).val().replace(/\n/g, "<br>")
+  var paragraph = "<p class='editable'>" + (content.length == 0 ? 'No Content' : content) + "</p>"
+  $(this).after(paragraph)
+  $(this).parent().children("p.editable").click(story_click)
+
+  var url = $(this).parent().attr('action')
+  $(this).parent().children(".editable_area").remove()
+  
+  var post_data = '_method=PUT&story[title]=' + $(this).val()
+  $.post(url, post_data)
  }
  
 function story_click() {
@@ -15,6 +17,7 @@ function story_click() {
    $(this).after(textarea)
    textarea.autoResize();
    textarea.focus()
+   textarea.select()
    textarea.blur(story_blur)
    $(this).remove()
  }
