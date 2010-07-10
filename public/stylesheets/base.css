@@ -22,7 +22,10 @@ a:hover {
 header h4 {
   font-size: 5em; }
 
-article {
+nav.header {
+  text-align: right; }
+
+#content {
   height: 100%; }
 
 #content_body {
@@ -118,3 +121,9 @@ article {
 
 .column_container {
   padding: 10px; }
+
+.column_container_left {
+  padding-left: 0px; }
+
+.column_container_right {
+  padding-right: 0px; }
