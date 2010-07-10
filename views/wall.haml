@@ -1,7 +1,12 @@
+- content_for :head do
+  %script{:type => "text/javascript", :src => "/javascripts/jquery.autogrow.js"}
+  %script{:type => "text/javascript",:src => "/javascripts/wall.js"}
+  
 - content_for :nav do
   %a{:href => "/walls/#{wall.url_name}/admin"} Admin
   |
   %a{:href => "/walls/#{wall.url_name}/columns/#{wall.columns.sort.first.id}/stories/new"} Add Story
+
 %div.grid_16.max_size
   %table.max_size
     %tr
@@ -16,36 +21,9 @@
                   - for story in column.stories.sort
                     %li.story.highlight.story_orange{:id => "#{story.id}"}
                       %form.storytext{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
-                        %p= story.title
+                        %p.editable= story.title
                         %input(type="hidden" name="_method" value="delete")
-            %div &nbsp;
+          %div &nbsp;
 :javascript
-  $(function() {
-    var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}
-    for (var i in column_ids) {
-      $(column_ids[i]).sortable({
-        placeholder: 'highlight',
-        forcePlaceholderSize: true,
-        connectWith: '.sortable',
-        stop: function(event, ui) {
-          var index = $(ui.item).parent().children().index(ui.item)
-          var story_id = $(ui.item).attr('id')
-          var old_column_id = $(event.target).attr('id').replace('column_', '');
-          var new_column_id = $(ui.item).parent().attr('id').replace('column_', '');
-
-          var url = '/walls/#{wall.name}/columns/' + old_column_id + '/stories/' + story_id
-          var post_data = '_method=PUT&story[index]=' + index + '&story[column_id]=' + new_column_id
-
-          $.post(url, post_data, function(data) {
-          });
-        }
-      });
-      $(column_ids[i]).disableSelection();
-    }
-    
-    $("li.story").hover(function(){
-        $(this).addClass('story_hover');
-      }, function() {
-        $(this).removeClass('story_hover');
-      });
-  });
+  var wall_name = "#{wall.name}"
+  var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}

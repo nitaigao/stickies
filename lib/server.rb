@@ -150,8 +150,6 @@ put '/walls/:wall_name/columns/:column_id/stories/:story_id' do
   wall = user.walls.select { |wall| wall.name == params[:wall_name] }.first
   column = wall.columns.select{|column| column.id == params[:column_id].to_i}.first
   story = column.stories.select{|story| story.id == params[:story_id].to_i}.first
-  puts story.inspect
-  story.index = params[:story][:index]
-  story.column_id = params[:story][:column_id]
-  story.save
+  story.update(params[:story])
+  ''
 end
