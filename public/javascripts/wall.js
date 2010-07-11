@@ -41,6 +41,12 @@ function story_click() {
     input.focus()
     input.select()
     input.blur(column_blur)
+    input.keypress(function(event) {
+      if (event.keyCode == 13) {
+        event.stopPropagation();
+        input.blur()
+      }
+    });
     $(this).remove()
   }
 

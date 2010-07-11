@@ -17,13 +17,14 @@
               .column_title
                 %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}", :method => "POST"}
                   %h3.column_editable= column.title
+                  %input(type="hidden" name="_method" value="PUT")
               .column_stories
                 %ul{:id => "column_#{column.id}", :class => "sortable"}
                   - for story in column.stories.sort
                     %li.story.highlight.story_orange{:id => "#{story.id}"}
                       %form.storytext{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
                         %p.editable=  story.title_html
-                        %input(type="hidden" name="_method" value="delete")
+                        %input(type="hidden" name="_method" value="PUT")
           %div &nbsp;
 :javascript
   var wall_name = "#{wall.name}"
