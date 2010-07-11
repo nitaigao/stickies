@@ -31,8 +31,8 @@ function story_click() {
    var url = $(this).parent().attr('action')
    $(this).parent().children(".editable_area").remove()
 
-   //var post_data = '_method=PUT&story[title]=' + $(this).val()
-   //$.post(url, post_data)
+   var post_data = '_method=PUT&column[title]=' + $(this).val()
+   $.post(url, post_data)
   }
 
  function column_click() {

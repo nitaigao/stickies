@@ -118,6 +118,13 @@ post '/walls/:name/columns/new/?' do
   redirect("/walls/#{params[:name]}/admin/")
 end
 
+put '/walls/:wall_name/columns/:column_id/?' do
+  wall = user.walls.select { |wall| wall.name == params[:wall_name] }.first
+  column = wall.columns.select{|column| column.id == params[:column_id].to_i }.first
+  column.update(params[:column])
+  ''
+end
+
 delete '/walls/:name/columns/:column_id/?' do
   wall = user.walls.select { |wall| wall.name == params[:name] }.first
   column = wall.columns.select{|column| column.id == params[:column_id].to_i}.first
