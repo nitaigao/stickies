@@ -22,6 +22,28 @@ function story_click() {
    $(this).remove()
  }
 
+ function column_blur() {
+   var content = $(this).val()
+   var heading = "<h3 class='column_editable'>" + (content.length == 0 ? 'No Content' : content) + "</h3>"
+   $(this).after(heading)
+   $(this).parent().children("h3.column_editable").click(column_click)
+
+   var url = $(this).parent().attr('action')
+   $(this).parent().children(".editable_area").remove()
+
+   //var post_data = '_method=PUT&story[title]=' + $(this).val()
+   //$.post(url, post_data)
+  }
+
+ function column_click() {
+    var input = $("<input type=\"text\" class='editable_area' value=\"" + $(this).html() + "\"></input>")
+    $(this).after(input)
+    input.focus()
+    input.select()
+    input.blur(column_blur)
+    $(this).remove()
+  }
+
 function enable_edit(editable_text) {
   editable_text.click(story_click)
 }
@@ -56,5 +78,6 @@ $(document).ready(function() {
   }
   
   $('p.editable').click(story_click)
+  $('.column_editable').click(column_click)
   
 });

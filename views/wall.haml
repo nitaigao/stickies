@@ -15,7 +15,7 @@
           .column.max_size
             .column_contents
               .column_title
-                %h3= column.title
+                %h3.column_editable= column.title
               .column_stories
                 %ul{:id => "column_#{column.id}", :class => "sortable"}
                   - for story in column.stories.sort
