@@ -7,25 +7,27 @@
   |
   %a{:href => "/walls/#{wall.url_name}/columns/#{wall.columns.sort.first.id}/stories/new"} Add Story
 
-%div.grid_16.max_size
-  %table.max_size
-    %tr
-      - for column in wall.columns.sort
-        %td{:style => "width: #{100 / wall.columns.size}%", :class => "#{wall.columns.sort.first == column ? 'column_container_left' : ''} #{wall.columns.sort.last == column ? 'column_container_right' : ''} column_container max_height"} 
-          .column.max_size
-            .column_contents
-              .column_title
-                %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}", :method => "POST"}
-                  %h3.column_editable= column.title
-                  %input(type="hidden" name="_method" value="PUT")
-              .column_stories
-                %ul{:id => "column_#{column.id}", :class => "sortable"}
-                  - for story in column.stories.sort
-                    %li.story.highlight.story_orange{:id => "#{story.id}"}
-                      %form.storytext{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
-                        %p.editable=  story.title_html
-                        %input(type="hidden" name="_method" value="PUT")
-          %div &nbsp;
+%article.columns
+  .container_16.max_height
+    %div.grid_16.max_size
+      %table.max_size
+        %tr
+          - for column in wall.columns.sort
+            %td{:style => "width: #{100 / wall.columns.size}%", :class => "#{wall.columns.sort.first == column ? 'column_container_left' : ''} #{wall.columns.sort.last == column ? 'column_container_right' : ''} column_container max_height"} 
+              .column.max_size
+                .column_contents
+                  .column_title
+                    %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}", :method => "POST"}
+                      %h3.column_editable= column.title
+                      %input(type="hidden" name="_method" value="PUT")
+                  .column_stories
+                    %ul{:id => "column_#{column.id}", :class => "sortable"}
+                      - for story in column.stories.sort
+                        %li.story.story_orange{:id => "#{story.id}"}
+                          %form.storytext{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
+                            %p.editable=  story.title_html
+                            %input(type="hidden" name="_method" value="PUT")
+              %div &nbsp;
 :javascript
   var wall_name = "#{wall.name}"
   var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}

@@ -15,6 +15,10 @@
   -webkit-box-shadow= !horizontal_offset !vertical_offset !blur_radius !colour
   -moz-box-shadow= !horizontal_offset !vertical_offset !blur_radius !colour
 
+=inset-shadow(!horizontal_offset, !vertical_offset, !blur_radius, !spread_radius, !colour)
+  -webkit-box-shadow= !horizontal_offset !vertical_offset !blur_radius!spread_radius !colour inset
+  -moz-box-shadow= !horizontal_offset !vertical_offset !blur_radius !spread_radius !colour inset
+
 =linear-gradient(!from, !to)
   background-color= !from
   background= -webkit-gradient(linear, 0% 0%, 0% 100%, from(!from), to(!to))
@@ -35,12 +39,12 @@ html, body
   height: 100%
 
 body
-  font-family: "Lucida Grande", Lucida, Verdana, sans-serif
+  font-family: Arial
   color: white
   font-size: 12px
-  background-color: #575C4D
   height: 100%
   width: 100%
+  background-color: #4F4F47
   
 a
   color: white
@@ -51,11 +55,29 @@ a:hover
   text-decoration: underline
   
 header
+  //background-color: #3299BB
+  height: 30px
+  display: block
+  +inset-shadow(0px, 0px, 4px, -1px, black)
   h4
     font-size: 5em
+    
+.story_orange
+  background-color: #FF9900
+
+.column_title 
+  h3
+    font-size: 1.3em
+    color: #fff
+    text-align: center
+  margin-bottom: 10px
+  //background-color: #3299BB
+  +rounded-top-corners(5px)
+  //+shadow(0px, 0px, 2px, black)
 
 nav.header
   text-align: right
+  line-height: 30px
 
 #content
   height: 100%
@@ -72,44 +94,53 @@ nav.header
   width: 300px
   
 .highlight
-  background-color: #C6CEFF
   +rounded-corners(5px)
   margin: 0px 0px 20px 0px
+  border: 2px dashed white
   
 .sortable, .column_contents, .column_stories
   height: 100%
   
 .wall_controls
   text-align: right
+  
+.logo
+  font-size: 2.0em
+  
+.walls
+  padding: 20px
+  +rounded-corners(5px) 
+  margin: 0px auto
+  span
+    font-size: 2.0em
+  
+.wall
+  border-top: 2px dashed white
+  padding: 20px
+  font-size: 1.5em
+
+.wall_last
+  padding-bottom: 0px
+  
+a.new_wall
+  float: right
+  display: block
 
 .columns
   margin: 0px auto
 
 .column
-  +shadow(0px, 0px, 1px, black)
   height: 100%
   +rounded-corners(5px)
   
+article.columns
+  height: 93%
+  
 .column_contents
-  background-color: #919299
   +rounded-corners(5px)  
-
-.column_stories
-  margin-left: 10px
-  margin-right: 10px
   
 .column_controls
   float: right
-  
-.column_title 
-  h3
-    font-size: 1.3em
-    color: #fff
-    text-align: center
-  margin-bottom: 10px
-  background-color: #757D73
-  +rounded-top-corners(5px)
-  +shadow(0px, 0px, 2px, black)
   
 .story
   margin: 0px 0px 20px 0px
@@ -123,9 +154,6 @@ nav.header
   
 .storytext
   padding: 5px
-  
-.story_orange
-  background-color: #ADB0CF
 
 .max_size
   width: 100%
@@ -150,3 +178,19 @@ nav.header
 .column_title input
   text-align: center
   
+.login_label
+  font-size: 3.0em
+  
+.login_input
+  text-align: right
+  input 
+    width: 100%
+    font-size: 3.0em
+    
+.login_button
+  text-align: right
+  
+.login_controls
+  div
+    padding-top: 5px
+    padding-bottom: 5px

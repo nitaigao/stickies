@@ -1,4 +1,10 @@
-%form.grid_16(action='/login' method='POST')
-  %label(for='openid') OpenID
-  %input(type='text' name='openid')
-  %input(type='submit' value='Login')
+.container_16
+  .grid_5.prefix_5
+    %form.login_controls(action='/login' method='POST')
+      %fieldset
+        .login_label
+          %label(for='openid') OpenID
+        .login_input
+          %input(type='text' name='openid')
+        .login_button 
+          %input(type='submit' value='Login')
