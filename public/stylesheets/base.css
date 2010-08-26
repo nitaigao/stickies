@@ -110,9 +110,10 @@ a.new_wall {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px; }
-  .column .max_width {
-    max-width: 33%;
-    margin: 0px auto; }
+
+.max_width {
+  max-width: 33%;
+  margin: 0px auto; }
 
 article.columns {
   height: 93%; }
