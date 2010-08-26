@@ -14,7 +14,7 @@
         %tr
           - for column in wall.columns.sort
             - width = 100 / wall.columns.size
-            %td
+            %td=&nbsp;
             %td{:style => "width: #{(width > 33) ? 33 : width}%", :class => "#{wall.columns.sort.first == column ? 'column_container_left' : ''} #{wall.columns.sort.last == column ? 'column_container_right' : ''} column_container max_height"} 
               .column.max_size
                 .column_contents
@@ -30,7 +30,7 @@
                             %p.editable=  story.title_html
                             %input(type="hidden" name="_method" value="PUT")
               %div &nbsp;
-            %td
+            %td=&nbsp;
 :javascript
   var wall_name = "#{wall.name}"
   var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}
