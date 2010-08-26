@@ -14,7 +14,7 @@
         %tr
           - for column in wall.columns.sort
             %td{:style => "width: #{100 / wall.columns.size}%", :class => "#{wall.columns.sort.first == column ? 'column_container_left' : ''} #{wall.columns.sort.last == column ? 'column_container_right' : ''} column_container max_height"} 
-              .column.max_size
+              .column.max_size.max_width
                 .column_contents
                   .column_title
                     %form{:action => "/walls/#{wall.url_name}/columns/#{column.id}", :method => "POST"}
