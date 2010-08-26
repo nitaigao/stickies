@@ -10,7 +10,7 @@ body {
   font-size: 12px;
   height: 100%;
   width: 100%;
-  background-color: #4F4F47; }
+  background-color: #4f4f47; }
 
 a {
   color: white;
@@ -29,7 +29,7 @@ header {
     font-size: 5em; }
 
 .story_orange {
-  background-color: #FF9900; }
+  background-color: #ff9900; }
 
 .column_title {
   margin-bottom: 10px;
@@ -41,7 +41,7 @@ header {
   border-top-left-radius: 5px; }
   .column_title h3 {
     font-size: 1.3em;
-    color: #fff;
+    color: white;
     text-align: center; }
 
 nav.header {
@@ -79,7 +79,7 @@ nav.header {
   text-align: right; }
 
 .logo {
-  font-size: 2.0em; }
+  font-size: 2em; }
 
 .walls {
   padding: 20px;
@@ -88,7 +88,7 @@ nav.header {
   border-radius: 5px;
   margin: 0px auto; }
   .walls span {
-    font-size: 2.0em; }
+    font-size: 2em; }
 
 .wall {
   border-top: 2px dashed white;
@@ -110,6 +110,9 @@ a.new_wall {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px; }
+  .column .max_width {
+    max-width: 33%;
+    margin: 0px auto; }
 
 article.columns {
   height: 93%; }
@@ -163,13 +166,13 @@ article.columns {
   text-align: center; }
 
 .login_label {
-  font-size: 3.0em; }
+  font-size: 3em; }
 
 .login_input {
   text-align: right; }
   .login_input input {
     width: 100%;
-    font-size: 3.0em; }
+    font-size: 3em; }
 
 .login_button {
   text-align: right; }
