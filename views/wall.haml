@@ -15,7 +15,7 @@
           - for column in wall.columns.sort
             - width = 100 / wall.columns.size
             %td=&nbsp;
-            %td{:style => "width: #{(width > 33) ? 33 : width}%", :class => "#{wall.columns.sort.first == column ? 'column_container_left' : ''} #{wall.columns.sort.last == column ? 'column_container_right' : ''} column_container max_height"} 
+            %td{:style => "width: #{(width > 25) ? 25 : width}%", :class => "#{wall.columns.sort.first == column ? 'column_container_left' : ''} #{wall.columns.sort.last == column ? 'column_container_right' : ''} column_container max_height"} 
               .column.max_size
                 .column_contents
                   .column_title
