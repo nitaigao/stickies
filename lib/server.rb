@@ -143,7 +143,7 @@ class StoryHub < Sinatra::Application
     story = Story.create(params[:new_story].merge({:index => column.stories.length}))
     column.add_story(story)
     column.save
-    redirect("/walls/#{wall.name}/")
+    column.id 
   end
 
   post '/walls/:wall_name/columns/:column_id/stories/new' do
