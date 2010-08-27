@@ -57,7 +57,8 @@ function enable_edit(editable_text) {
 function add_story() {
   var new_story = $('.new_story').clone()
   new_story.removeClass('new_story')
-  $('.first_column').append(new_story)  
+  new_story.children('p.editable').click(story_click)
+  $('.first_column').append(new_story)
 }
 
 $(document).ready(function() {
@@ -81,8 +82,7 @@ $(document).ready(function() {
         var new_column_id = $(ui.item).parent().attr('id').replace('column_', '');
         var url = '/walls/' + wall_name + '/columns/' + old_column_id + '/stories/' + story_id
         var post_data = '_method=PUT&story[index]=' + index + '&story[column_id]=' + new_column_id
-        $.post(url, post_data, function(data) {
-        });
+        $.post(url, post_data, function(data) { });
       }
     });
     
