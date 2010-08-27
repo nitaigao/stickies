@@ -28,6 +28,9 @@ header {
   header h4 {
     font-size: 5em; }
 
+.new_story {
+  display: none; }
+
 .story_orange {
   background-color: #ff9900; }
 
