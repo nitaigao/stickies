@@ -15,8 +15,9 @@
         %tr
           - for column in wall.columns.sort
             - width = 100 / wall.columns.size
+            - is_first_column = wall.columns.sort.first == column
             %td &nbsp;
-            %td{:style => "width: #{(width > 25) ? 25 : width}%", :class => "#{wall.columns.sort.first == column ? 'column_container_left' : ''} #{wall.columns.sort.last == column ? 'column_container_right' : ''} column_container max_height"} 
+            %td{:style => "width: #{(width > 25) ? 25 : width}%", :class => "#{is_first_column ? 'column_container_left' : ''} #{wall.columns.sort.last == column ? 'column_container_right' : ''} column_container max_height"} 
               .column.max_size
                 .column_contents
                   .column_title
@@ -24,7 +25,7 @@
                       %h3.column_editable= column.title
                       %input(type="hidden" name="_method" value="PUT")
                   .column_stories
-                    %ul{:id => "column_#{column.id}", :class => "sortable"}
+                    %ul{:id => "column_#{column.id}", :class => "sortable #{is_first_column ? 'first_column' : ''}"}
                       - for story in column.stories.sort
                         %li.story.story_orange{:id => "#{story.id}"}
                           %form.storytext{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
@@ -32,6 +33,10 @@
                             %input(type="hidden" name="_method" value="PUT")
               %div &nbsp;
             %td &nbsp;
+    %li.hidden_story.story.story_orange
+      %form.storytext{:method => "POST"}
+        %p.editable= No Content
+        %input(type="hidden" name="_method" value="PUT")
 :javascript
   var wall_name = "#{wall.name}"
   var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}
