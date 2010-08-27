@@ -55,10 +55,16 @@ function enable_edit(editable_text) {
 }
 
 function add_story() {
-  var new_story = $('.new_story').clone()
-  new_story.removeClass('new_story')
-  new_story.find('p.editable').click(story_click)
-  $('.first_column').append(new_story)
+  var first_column = $('.first_column')
+  
+  var url = '/walls/' + wall_name + '/columns/' + first_column.attr('id') + '/stories/'
+  $.post(url, post_data, function(data) {
+    var new_story = $('.new_story').clone()
+    new_story.attr('id', data)
+    new_story.removeClass('new_story')
+    new_story.find('p.editable').click(story_click)
+    $('.first_column').append(new_story)
+  });
 }
 
 $(document).ready(function() {
@@ -72,7 +78,7 @@ $(document).ready(function() {
         $(ui.item).children('form').children('p.editable').unbind('click')
       },
       
-      stop: function(event, ui) {        
+      stop: function(event, ui) {
         editable_text = $(ui.item).children('form').children('p.editable')
         window.setTimeout(enable_edit, 1, editable_text);
         
