@@ -143,7 +143,7 @@ class StoryHub < Sinatra::Application
     story = Story.create({:index => column.stories.length})
     column.add_story(story)
     column.save
-    column.id 
+    story.id
   end
 
   post '/walls/:wall_name/columns/:column_id/stories/new' do
