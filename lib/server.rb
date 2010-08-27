@@ -140,7 +140,7 @@ class StoryHub < Sinatra::Application
   post '/walls/:wall_name/columns/:column_id/stories/?' do
     wall = user.walls.select { |wall| wall.name == params[:wall_name] }.first
     column = wall.columns.select{|column| column.id == params[:column_id].to_i}.first
-    story = Story.create(params[:new_story].merge({:index => column.stories.length}))
+    story = Story.create({:index => column.stories.length})
     column.add_story(story)
     column.save
     column.id 
