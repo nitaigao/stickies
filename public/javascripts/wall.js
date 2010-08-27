@@ -58,7 +58,7 @@ function add_story() {
   var first_column = $('.first_column')
   
   var url = '/walls/' + wall_name + '/columns/' + first_column.attr('id').replace('column_', '') + '/stories/'
-  var post-data = ''
+  var post_data = ''
   $.post(url, post_data, function(data) {
     var new_story = $('.new_story').clone()
     new_story.attr('id', data)
