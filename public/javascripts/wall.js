@@ -54,6 +54,10 @@ function enable_edit(editable_text) {
   editable_text.click(story_click)
 }
 
+function add_story() {
+  alert('hello')
+}
+
 $(document).ready(function() {
   for (var i in column_ids) {
     $(column_ids[i]).sortable({
@@ -85,5 +89,6 @@ $(document).ready(function() {
   
   $('p.editable').click(story_click)
   $('.column_editable').click(column_click)
+  $('a#add_story').click(add_story)
   
 });

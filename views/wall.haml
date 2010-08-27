@@ -5,7 +5,8 @@
 - content_for :nav do
   %a{:href => "/walls/#{wall.url_name}/admin"} Admin
   |
-  %a{:href => "/walls/#{wall.url_name}/columns/#{wall.columns.sort.first.id}/stories/new"} Add Story
+  %a{:href => "#", :id => 'add_story'} Add Story 
+  //walls/#{wall.url_name}/columns/#{wall.columns.sort.first.id}/stories/new
 
 %article.columns
   .container_16.max_height
