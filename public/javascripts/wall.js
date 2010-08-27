@@ -55,8 +55,8 @@ function enable_edit(editable_text) {
 }
 
 function add_story() {
-  var new_story = $('.hidden_story').clone()
-  new_story.removeClass('hidden')
+  var new_story = $('.new_story').clone()
+  new_story.removeClass('new_story')
   $('first_column').append(new_story)  
 }
 
