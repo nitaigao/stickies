@@ -57,7 +57,7 @@ function enable_edit(editable_text) {
 function add_story() {
   var new_story = $('.new_story').clone()
   new_story.removeClass('new_story')
-  new_story.children('p.editable').click(story_click)
+  new_story.find('p.editable').click(story_click)
   $('.first_column').append(new_story)
 }
 
