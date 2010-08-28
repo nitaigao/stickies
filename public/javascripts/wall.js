@@ -1,25 +1,34 @@
 function story_blur() {
-  
   var content = $(this).val().replace(/\n/g, "<br>")
   var paragraph = "<p class='editable'>" + (content.length == 0 ? 'No Content' : content) + "</p>"
+  
   $(this).after(paragraph)
   $(this).parent().children("p.editable").click(story_click)
-
-  var url = $(this).parent().attr('action')
-  $(this).parent().children(".editable_area").remove()
   
-  var post_data = '_method=PUT&story[title]=' + $(this).val()
+  var column_id = $(this).parents('ul').attr('id').replace('column_', '')
+  var post_url = '/walls/' + wall_name + '/columns/' + column_id + '/stories/'
+  
+  var put_url = $(this).parent().attr('action')
+  
+  var is_empty_story = $(this).parents('li').hasClass('empty_story')
+  var url = (is_empty_story) ? post_url : put_url
+  var method = (is_empty_story) ? "POST" : "PUT"
+  
+  var post_data = '_method=' + method + '&story[title]=' + $(this).val()
   $.post(url, post_data)
+  
+  $(this).parents('li').removeClass('empty_story')
+  $(this).remove()
  }
  
 function story_click() {
    var textarea = $("<textarea class='editable_area'>" + $(this).html().replace(/<br>/g, "\n") + "</textarea>")
    $(this).after(textarea)
+   $(this).remove()
    textarea.autoResize();
+   textarea.blur(story_blur)
    textarea.focus()
    textarea.select()
-   textarea.blur(story_blur)
-   $(this).remove()
  }
 
  function column_blur() {
@@ -38,6 +47,7 @@ function story_click() {
  function column_click() {
     var input = $("<input type=\"text\" class='editable_area' value=\"" + $(this).html() + "\"></input>")
     $(this).after(input)
+    $(this).remove()
     input.focus()
     input.select()
     input.blur(column_blur)
@@ -47,25 +57,19 @@ function story_click() {
         input.blur()
       }
     });
-    $(this).remove()
   }
 
 function enable_edit(editable_text) {
   editable_text.click(story_click)
 }
 
-function add_story() {
-  var first_column = $('.first_column')
-  
-  var url = '/walls/' + wall_name + '/columns/' + first_column.attr('id').replace('column_', '') + '/stories/'
-  var post_data = ''
-  $.post(url, post_data, function(data) {
-    var new_story = $('.new_story').clone()
-    new_story.attr('id', data)
-    new_story.removeClass('new_story')
-    new_story.find('p.editable').click(story_click)
-    $('.first_column').append(new_story)
-  });
+function add_story(event) {  
+  var new_story = $('.new_story').clone()
+  new_story.removeClass('new_story')
+  $('.first_column').append(new_story)
+  new_story.find('p.editable').click(story_click)
+  new_story.find('p.editable').click()  
+  return false
 }
 
 $(document).ready(function() {

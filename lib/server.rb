@@ -6,11 +6,12 @@ require 'restclient'
 require 'json'
 require "sass/plugin/rack"
 require "sequel"
+require "json"
 
 require "openid"
 require "openid/store/filesystem"
 
-DB = Sequel.connect(ENV['DATABASE_URL'] || "mysql://localhost/storyhub_dev?user=root")
+DB = Sequel.connect(ENV['DATABASE_URL'] || "mysql://localhost/stickies_dev?user=root")
 
 require File.join(File.dirname(__FILE__), "user")
 require File.join(File.dirname(__FILE__), "wall")
@@ -133,17 +134,17 @@ class StoryHub < Sinatra::Application
     redirect("/walls/#{params[:name]}/admin/")
   end
 
-  get '/walls/:wall_name/columns/:column_id/stories/new' do
+  get '/walls/:wall_name/columns/:column_id/stories/new/?' do
     haml :new_story, :locals => { :wall_name => params[:wall_name], :column_id => params[:column_id] }
   end
 
   post '/walls/:wall_name/columns/:column_id/stories/?' do
+    content_type 'application/json', :charset => 'utf-8'
     wall = user.walls.select { |wall| wall.name == params[:wall_name] }.first
     column = wall.columns.select{|column| column.id == params[:column_id].to_i}.first
     story = Story.create({:index => column.stories.length})
     column.add_story(story)
     column.save
-    story.id
   end
 
   post '/walls/:wall_name/columns/:column_id/stories/new' do

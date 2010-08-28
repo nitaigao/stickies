@@ -5,8 +5,7 @@
 - content_for :nav do
   %a{:href => "/walls/#{wall.url_name}/admin"} Admin
   |
-  %a{:href => "#", :id => 'add_story'} Add Story 
-  //walls/#{wall.url_name}/columns/#{wall.columns.sort.first.id}/stories/new
+  %a{:href => "/walls/#{wall.url_name}/columns/#{wall.columns.sort.first.id}/stories/new", :id => 'add_story'} Add Story 
 
 %article.columns
   .container_16.max_height
@@ -33,10 +32,9 @@
                             %input(type="hidden" name="_method" value="PUT")
               %div &nbsp;
             %td &nbsp;
-    %li.new_story.story.story_orange
-      %form.storytext{:method => "POST"}
+    %li.new_story.empty_story.story.story_orange
+      %form.storytext{:method => "POST", :action => "/walls/#{wall.url_name}/columns/#{column.id}/stories"}
         %p.editable No Content
-        %input(type="hidden" name="_method" value="PUT")
 :javascript
   var wall_name = "#{wall.name}"
   var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}
