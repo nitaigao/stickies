@@ -8,16 +8,20 @@ function story_blur() {
   var column_id = $(this).parents('ul').attr('id').replace('column_', '')
   var post_url = '/walls/' + wall_name + '/columns/' + column_id + '/stories/'
   
-  var put_url = $(this).parent().attr('action')
+  var story = $(this).parents('li')
+  var story_id = story.attr('id')
+  var put_url = '/walls/' + wall_name + '/columns/' + column_id + '/stories/' + story_id
   
   var is_empty_story = $(this).parents('li').hasClass('empty_story')
   var url = (is_empty_story) ? post_url : put_url
   var method = (is_empty_story) ? "POST" : "PUT"
   
   var post_data = '_method=' + method + '&story[title]=' + $(this).val()
-  $.post(url, post_data)
+  $.post(url, post_data, function(data) {
+    story.attr('id', data.id)
+    story.removeClass('empty_story')
+  })
   
-  $(this).parents('li').removeClass('empty_story')
   $(this).remove()
  }
  

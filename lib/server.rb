@@ -139,12 +139,14 @@ class StoryHub < Sinatra::Application
   end
 
   post '/walls/:wall_name/columns/:column_id/stories/?' do
-    content_type 'application/json', :charset => 'utf-8'
     wall = user.walls.select { |wall| wall.name == params[:wall_name] }.first
     column = wall.columns.select{|column| column.id == params[:column_id].to_i}.first
-    story = Story.create({:index => column.stories.length})
+    story = Story.create(params[:story].merge({:index => column.stories.length}))
     column.add_story(story)
     column.save
+    
+    content_type 'application/json', :charset => 'utf-8'
+    {:id => story.id}.to_json
   end
 
   post '/walls/:wall_name/columns/:column_id/stories/new' do
@@ -169,6 +171,5 @@ class StoryHub < Sinatra::Application
     column = wall.columns.select{|column| column.id == params[:column_id].to_i}.first
     story = column.stories.select{|story| story.id == params[:story_id].to_i}.first
     story.update(params[:story])
-    ''
   end
 end
