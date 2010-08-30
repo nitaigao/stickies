@@ -153,13 +153,13 @@ article.columns {
 .max_height {
   height: 100%; }
 
-.column_container {
+.column {
   padding: 10px; }
 
-.column_container_left {
+.column_left {
   padding-left: 0px; }
 
-.column_container_right {
+.column_right {
   padding-right: 0px; }
 
 .editable_area {

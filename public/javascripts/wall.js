@@ -76,36 +76,58 @@ function add_story(event) {
   return false
 }
 
-$(document).ready(function() {
-  for (var i in column_ids) {
-    $(column_ids[i]).sortable({
-      placeholder: 'highlight',
-      forcePlaceholderSize: true,
-      connectWith: '.sortable',
-      
-      start: function(event, ui) {
-        $(ui.item).children('form').children('p.editable').unbind('click')
-      },
-      
-      stop: function(event, ui) {
-        editable_text = $(ui.item).children('form').children('p.editable')
-        window.setTimeout(enable_edit, 1, editable_text);
-        
-        var index = $(ui.item).parent().children().index(ui.item)
-        var story_id = $(ui.item).attr('id')
-        var old_column_id = $(event.target).attr('id').replace('column_', '');
-        var new_column_id = $(ui.item).parent().attr('id').replace('column_', '');
-        var url = '/walls/' + wall_name + '/columns/' + old_column_id + '/stories/' + story_id
-        var post_data = '_method=PUT&story[index]=' + index + '&story[column_id]=' + new_column_id
-        $.post(url, post_data, function(data) { });
-      }
-    });
+function add_column(event) {
+  var column = $("<td></td>")
+  column.attr("style", "column_container max_height")
+  var new_column = $('.new_column').clone()
+  new_column.removeClass('new_column')
+  column.append(new_column)
+  $('#last_column').before(column)
+  
+  make_sortable(column.find("ul"))
+  
+  $(".column_container").each(function(i, container) {
     
-    $(column_ids[i]).disableSelection();
-  }
+  });
+
+  return false
+}
+
+function make_sortable(column) {
+  $(column).sortable({
+    placeholder: 'highlight',
+    forcePlaceholderSize: true,
+    connectWith: '.sortable',
+    
+    start: function(event, ui) {
+      $(ui.item).children('form').children('p.editable').unbind('click')
+    },
+    
+    stop: function(event, ui) {
+      editable_text = $(ui.item).children('form').children('p.editable')
+      window.setTimeout(enable_edit, 1, editable_text);
+      
+      var index = $(ui.item).parent().children().index(ui.item)
+      var story_id = $(ui.item).attr('id')
+      var old_column_id = $(event.target).attr('id').replace('column_', '');
+      var new_column_id = $(ui.item).parent().attr('id').replace('column_', '');
+      var url = '/walls/' + wall_name + '/columns/' + old_column_id + '/stories/' + story_id
+      var post_data = '_method=PUT&story[index]=' + index + '&story[column_id]=' + new_column_id
+      $.post(url, post_data, function(data) { });
+    }
+  });
+  
+  $(column).disableSelection();
+}
+
+$(document).ready(function() {
+  $(".sortable").each(function(i, sortable) {
+    make_sortable($(sortable))
+  });
   
   $('p.editable').click(story_click)
   $('.column_editable').click(column_click)
   $('a#add_story').click(add_story)
+  $('a#add_column').click(add_column)
   
 });
