@@ -35,8 +35,9 @@ class StoryHub < Sinatra::Application
   end
 
   def open_id
-    redirect '/' if !session.has_key?(:open_id)
-    session[:open_id]
+#    redirect '/' if !session.has_key?(:open_id)
+#    session[:open_id]
+    "http://nkostelnik.myopenid.com/"
   end
 
   def user
@@ -75,7 +76,7 @@ class StoryHub < Sinatra::Application
 
       when OpenID::Consumer::SUCCESS
         new_user = User.first(:open_id => response.display_identifier) || User.create({:open_id => response.display_identifier, :nickname => params['openid.sreg.nickname']})      
-        session[:open_id] = new_user.open_id
+        session[:open_id] = new_user.open_id 
         redirect '/dashboard'
     end  
   end
@@ -111,13 +112,17 @@ class StoryHub < Sinatra::Application
     redirect('/dashboard/') if user.walls.reject { |wall| wall.name != params[:name] }.empty?
     haml :admin, :locals => { :wall => user.walls.select { |wall| wall.name == params[:name] }.first }
   end 
+  
+  get '/walls/:name/columns/new/?' do
+    haml :new_column, :locals => { :wall => user.walls.select { |wall| wall.name == params[:name] }.first }
+  end
 
   post '/walls/:name/columns/new/?' do
     wall = user.walls.select { |wall| wall.name == params[:name] }.first
     column = Column.create(params[:new_column].merge(:order => wall.columns.size))
     wall.add_column(column)
     wall.save
-    redirect("/walls/#{params[:name]}/admin/")
+    redirect("/walls/#{params[:name]}/")
   end
 
   put '/walls/:wall_name/columns/:column_id/?' do
