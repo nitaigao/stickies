@@ -62,7 +62,7 @@ header
   h4
     font-size: 5em
     
-.new_story
+.new_story, .new_column
   display: none
     
 .story_orange
@@ -132,10 +132,6 @@ a.new_wall
 .columns
   margin: 0px auto
 
-.column
-  height: 100%
-  +rounded-corners(5px)
-
 .max_width
   max-width: 33%
   margin: 0px auto
@@ -169,13 +165,14 @@ article.columns
 .max_height
   height: 100%
 
-.column_container
-  padding: 10px
+.column
+  padding-right: 10px
+  padding-left: 10px
 
-.column_container_left
+.column_left
   padding-left: 0px
 
-.column_container_right
+.column_right
   padding-right: 0px
   
 .editable_area

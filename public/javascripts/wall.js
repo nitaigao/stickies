@@ -26,26 +26,39 @@ function story_blur() {
  }
  
 function story_click() {
-   var textarea = $("<textarea class='editable_area'>" + $(this).html().replace(/<br>/g, "\n") + "</textarea>")
-   $(this).after(textarea)
-   $(this).remove()
-   textarea.autoResize();
-   textarea.blur(story_blur)
-   textarea.focus()
-   textarea.select()
- }
+  var textarea = $("<textarea class='editable_area'>" + $(this).html().replace(/<br>/g, "\n") + "</textarea>")
+  $(this).after(textarea)
+  $(this).remove()
+  textarea.autoResize();
+  textarea.blur(story_blur)
+  textarea.focus()
+  textarea.select()
+}
 
  function column_blur() {
    var content = $(this).val()
    var heading = "<h3 class='column_editable'>" + (content.length == 0 ? 'No Content' : content) + "</h3>"
    $(this).after(heading)
    $(this).parent().children("h3.column_editable").click(column_click)
+   
+   var post_url = '/walls/' + wall_name + '/columns/'
 
-   var url = $(this).parent().attr('action')
+   var column = $(this).parents('td')
+
+   var column_id = column.attr('id').replace("column_", "")
+   var put_url = '/walls/' + wall_name + '/columns/' + column_id
+
+   var is_empty_column = $(this).parents('div').hasClass('empty_column')
+   var url = (is_empty_column) ? post_url : put_url
+   var method = (is_empty_column) ? "POST" : "PUT"
+ 
+   var post_data = '_method=' + method + '&column[title]=' + $(this).val()
+   $.post(url, post_data, function(data) {
+     column.attr('id', 'column_' + data.id)
+     column.removeClass('empty_column')
+   })
+
    $(this).parent().children(".editable_area").remove()
-
-   var post_data = '_method=PUT&column[title]=' + $(this).val()
-   $.post(url, post_data)
   }
 
  function column_click() {
@@ -72,24 +85,26 @@ function add_story(event) {
   new_story.removeClass('new_story')
   $('.first_column').append(new_story)
   new_story.find('p.editable').click(story_click)
-  new_story.find('p.editable').click()  
+  new_story.find('p.editable').click()
   return false
 }
 
 function add_column(event) {
-  var column = $("<td></td>")
-  column.attr("style", "column_container max_height")
-  var new_column = $('.new_column').clone()
-  new_column.removeClass('new_column')
-  column.append(new_column)
+  var column = $("<td></td>").addClass("column max_height")
+
+  var new_column = $('.new_column')
+  column.append(new_column.html())
+
   $('#last_column').before(column)
-  
   make_sortable(column.find("ul"))
   
-  $(".column_container").each(function(i, container) {
-    
-  });
+  $(".column").attr("style", "width: " + (100 / $(".column").size()) + "%")
+  $(".column").removeClass("column_right")
+  $(".column").last().addClass("column_right")
 
+  column.find('.column_editable').click(column_click)
+  column.find('.column_editable').click()
+  
   return false
 }
 

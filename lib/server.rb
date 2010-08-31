@@ -124,6 +124,15 @@ class StoryHub < Sinatra::Application
     wall.save
     redirect("/walls/#{params[:name]}/")
   end
+  
+  post '/walls/:name/columns/?' do
+    wall = user.walls.select { |wall| wall.name == params[:name] }.first
+    column = Column.create(params[:column].merge(:order => wall.columns.size))
+    wall.add_column(column)
+    wall.save
+    content_type 'application/json', :charset => 'utf-8'
+    {:id => column.id}.to_json
+  end
 
   put '/walls/:wall_name/columns/:column_id/?' do
     wall = user.walls.select { |wall| wall.name == params[:wall_name] }.first
