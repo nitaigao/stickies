@@ -35,9 +35,8 @@ class StoryHub < Sinatra::Application
   end
 
   def open_id
-#    redirect '/' if !session.has_key?(:open_id)
-#    session[:open_id]
-    "http://nkostelnik.myopenid.com/"
+    redirect '/' if !session.has_key?(:open_id)
+    session[:open_id]
   end
 
   def user
