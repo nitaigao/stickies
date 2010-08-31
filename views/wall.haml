@@ -14,7 +14,7 @@
     %div.grid_16.max_size
       %table.max_size
         %tr.columns
-          %td#first_column
+          %td#first_column &nbsp;
           - for column in wall.columns.sort
             - width = 100.0 / wall.columns.size
             - is_first_column = wall.columns.sort.first == column
@@ -33,7 +33,7 @@
                         %form.storytext{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
                           %p.editable=  story.title_html
                           %input(type="hidden" name="_method" value="PUT")
-          %td#last_column
+          %td#last_column &nbsp;
           
           
     %li.new_story.empty_story.story.story_orange
