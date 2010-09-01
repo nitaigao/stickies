@@ -33,10 +33,9 @@
                         %form.storytext.story_editable{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}=story.title_html
           %td#last_column &nbsp;
           
-          
-    %li.new_story.empty_story.story.story_orange
-      %form.storytext{:method => "POST", :action => "/walls/#{wall.url_name}/columns/#{column.id}/stories"}
-        %p.editable No Content
+    .new_story      
+      %li.empty_story.story.story_orange
+        %form.storytext.story_editable{:method => "POST", :action => "/walls/#{wall.url_name}/columns/#{column.id}/stories"} No Content
         
     .new_column
       .column_title.empty_column
@@ -48,4 +47,3 @@
 
 :javascript
   var wall_name = "#{wall.name}"
-  var column_ids = #{wall.columns.inject([]) { |i, m| i << "#column_#{m.id}" }.to_json}

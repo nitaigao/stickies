@@ -22,6 +22,7 @@ function story_blur() {
  }
  
 function story_click() {
+  $('.editable_area').blur()
   $(this).unbind('click')
   var textarea = $("<textarea class='editable_area'>" + $(this).html().replace(/<br>/g, "\n") + "</textarea>")
   $(this).html(textarea)
@@ -77,11 +78,10 @@ function enable_edit(editable_text) {
 }
 
 function add_story(event) {  
-  var new_story = $('.new_story').clone()
-  new_story.removeClass('new_story')
-  $('.first_column').append(new_story)
-  new_story.find('p.editable').click(story_click)
-  new_story.find('p.editable').click()
+  var new_story = $($('.new_story').html())
+  $('.column_left').find('.sortable').append(new_story)
+  new_story.find('.story_editable').click(story_click)
+  new_story.find('.story_editable').click()
   return false
 }
 
@@ -94,9 +94,13 @@ function add_column(event) {
   $('#last_column').before(column)
   make_sortable(column.find("ul"))
   
-  $(".column").attr("style", "width: " + (100 / $(".column").size()) + "%")
-  $(".column").removeClass("column_right")
+  var width = 100 / $(".column").size()
+  var max_width = 25
+  
+  $(".column").attr("style", "width: " + (width > max_width) ? max_width : width + "%")
+  $(".column").removeClass("column_left").removeClass("column_right")
   $(".column").last().addClass("column_right")
+  $(".column").first().addClass("column_left")
 
   column.find('.column_editable').click(column_click)
   column.find('.column_editable').click()
