@@ -12,8 +12,10 @@ function story_blur() {
   
   var post_data = '_method=' + method + '&story[title]=' + $(this).val()
   $.post(url, post_data, function(data) {
-    story.attr('id', data.id)
-    story.removeClass('empty_story')
+    if (method == "PUT") {
+      story.attr('id', data.id)
+      story.removeClass('empty_story')
+    }
   })
   
   var content = $(this).val().replace(/\n/g, "<br>")
