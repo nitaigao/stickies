@@ -28,7 +28,7 @@ header {
   header h4 {
     font-size: 5em; }
 
-.new_story, .column_hidden {
+.new_story, .hidden_column {
   display: none; }
 
 .story_orange {
