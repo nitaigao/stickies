@@ -47,7 +47,7 @@ function story_click() {
    var column_id = column.attr('id').replace("column_", "")
    var put_url = '/walls/' + wall_name + '/columns/' + column_id
 
-   var is_empty_column = $(this).parents('div').hasClass('empty_column')
+   var is_empty_column = column.hasClass('new_column')
    var url = (is_empty_column) ? post_url : put_url
    var method = (is_empty_column) ? "POST" : "PUT"
  
@@ -55,7 +55,7 @@ function story_click() {
    $.post(url, post_data, function(data) {
      if (method == "POST") {
        column.attr('id', 'column_' + data.id)
-       $(this).parents('div').removeClass('empty_column')
+       column.removeClass('new_column')
      }
    })
 
@@ -90,9 +90,9 @@ function add_story(event) {
 }
 
 function add_column(event) {
-  var column = $("<td></td>").addClass("column max_height")
+  var column = $("<td></td>").addClass("column max_height new_column")
 
-  var new_column = $('.new_column')
+  var new_column = $('.hidden_column')
   column.append(new_column.html())
 
   $('#last_column').before(column)

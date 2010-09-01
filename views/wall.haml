@@ -37,7 +37,7 @@
       %li.empty_story.story.story_orange
         %form.storytext.story_editable{:method => "POST", :action => "/walls/#{wall.url_name}/columns/#{column.id}/stories"} No Content
         
-    .new_column
+    .hidden_column
       .column_title.empty_column
         %form{:action => "/walls/#{wall.url_name}/columns/0", :method => "POST"}
           %h3.column_editable New Column
