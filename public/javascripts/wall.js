@@ -12,7 +12,7 @@ function story_blur() {
   
   var post_data = '_method=' + method + '&story[title]=' + $(this).val()
   $.post(url, post_data, function(data) {
-    if (method == "PUT") {
+    if (method == "POST") {
       story.attr('id', data.id)
       story.removeClass('empty_story')
     }
@@ -53,7 +53,7 @@ function story_click() {
  
    var post_data = '_method=' + method + '&column[title]=' + $(this).val()
    $.post(url, post_data, function(data) {
-     if (method == "PUT") {
+     if (method == "POST") {
        column.attr('id', 'column_' + data.id)
        $(this).parents('div').removeClass('empty_column')
      }
