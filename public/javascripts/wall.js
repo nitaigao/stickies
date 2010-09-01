@@ -53,8 +53,10 @@ function story_click() {
  
    var post_data = '_method=' + method + '&column[title]=' + $(this).val()
    $.post(url, post_data, function(data) {
-     column.attr('id', 'column_' + data.id)
-     column.removeClass('empty_column')
+     if (method == "PUT") {
+       column.attr('id', 'column_' + data.id)
+       $(this).parents('div').removeClass('empty_column')
+     }
    })
 
    $(this).parent().children(".editable_area").remove()
