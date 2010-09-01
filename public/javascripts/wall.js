@@ -1,5 +1,5 @@
 function story_blur() {
-  var column_id = $(this).parents('ul').attr('id').replace('column_', '')
+  var column_id = $(this).parents('td').attr('id').replace('column_', '')
   var post_url = '/walls/' + wall_name + '/columns/' + column_id + '/stories/'
   
   var story = $(this).parents('li')
