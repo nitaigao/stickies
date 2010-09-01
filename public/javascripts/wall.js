@@ -1,10 +1,4 @@
 function story_blur() {
-  var content = $(this).val().replace(/\n/g, "<br>")
-  var paragraph = "<p class='editable'>" + (content.length == 0 ? 'No Content' : content) + "</p>"
-  
-  $(this).after(paragraph)
-  $(this).parent().children("p.editable").click(story_click)
-  
   var column_id = $(this).parents('ul').attr('id').replace('column_', '')
   var post_url = '/walls/' + wall_name + '/columns/' + column_id + '/stories/'
   
@@ -22,13 +16,15 @@ function story_blur() {
     story.removeClass('empty_story')
   })
   
-  $(this).remove()
+  var content = $(this).val().replace(/\n/g, "<br>")
+  $(this).parent().click(story_click)
+  $(this).parent().html(content)
  }
  
 function story_click() {
+  $(this).unbind('click')
   var textarea = $("<textarea class='editable_area'>" + $(this).html().replace(/<br>/g, "\n") + "</textarea>")
-  $(this).after(textarea)
-  $(this).remove()
+  $(this).html(textarea)
   textarea.autoResize();
   textarea.blur(story_blur)
   textarea.focus()
@@ -115,20 +111,21 @@ function make_sortable(column) {
     connectWith: '.sortable',
     
     start: function(event, ui) {
-      $(ui.item).children('form').children('p.editable').unbind('click')
+      $(ui.item).children('form').unbind('click')
     },
     
     stop: function(event, ui) {
-      editable_text = $(ui.item).children('form').children('p.editable')
+      editable_text = $(ui.item).children('form')
       window.setTimeout(enable_edit, 1, editable_text);
       
       var index = $(ui.item).parent().children().index(ui.item)
       var story_id = $(ui.item).attr('id')
       var old_column_id = $(event.target).attr('id').replace('column_', '');
       var new_column_id = $(ui.item).parent().attr('id').replace('column_', '');
+      
       var url = '/walls/' + wall_name + '/columns/' + old_column_id + '/stories/' + story_id
       var post_data = '_method=PUT&story[index]=' + index + '&story[column_id]=' + new_column_id
-      $.post(url, post_data, function(data) { });
+      $.post(url, post_data);
     }
   });
   
@@ -140,7 +137,7 @@ $(document).ready(function() {
     make_sortable($(sortable))
   });
   
-  $('p.editable').click(story_click)
+  $('.story_editable').click(story_click)
   $('.column_editable').click(column_click)
   $('a#add_story').click(add_story)
   $('a#add_column').click(add_column)

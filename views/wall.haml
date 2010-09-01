@@ -30,9 +30,7 @@
                   %ul{:id => "column_#{column.id}", :class => "sortable max_height #{is_first_column ? 'first_column' : ''}".strip}
                     - for story in column.stories.sort
                       %li.story.story_orange{:id => "#{story.id}"}
-                        %form.storytext{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}
-                          %p.editable=  story.title_html
-                          %input(type="hidden" name="_method" value="PUT")
+                        %form.storytext.story_editable{:action => "/walls/#{wall.url_name}/columns/#{column.id}/stories/#{story.id}", :method => "POST"}=story.title_html
           %td#last_column &nbsp;
           
           
