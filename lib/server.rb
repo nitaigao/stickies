@@ -4,11 +4,10 @@ require 'sinatra/content_for'
 require 'haml'
 require 'restclient'
 require 'json'
-require "sass/plugin/rack"
 require "sequel"
 require "json"
 
-require "openid"
+require 'openid'
 require "openid/store/filesystem"
 
 DB = Sequel.connect(ENV['DATABASE_URL'] || "mysql://localhost/stickies_dev?user=root")
@@ -27,7 +26,7 @@ class StoryHub < Sinatra::Application
     set :haml, { :attr_wrapper => '"' }
     set :root, File.dirname(__FILE__)
 
-    use Sass::Plugin::Rack
+    #use Sass::Plugin::Rack
   end
 
   def consumer

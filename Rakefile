@@ -6,7 +6,7 @@ require "sequel/extensions/migration"
 
 task :default => :test
 
-DB = Sequel.connect("mysql://localhost/storyhub_dev?user=root")
+DB = Sequel.connect("mysql://localhost/stickies_dev?user=root")
 
 namespace :db do
   desc "Perform migration using migrations in schema/migrations"

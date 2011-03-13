@@ -1,7 +1,6 @@
 class CreateDatabase < Sequel::Migration
 
   def up
-    
     create_table(:users) do
       primary_key :id
       String :open_id
@@ -32,7 +31,6 @@ class CreateDatabase < Sequel::Migration
       String :title
       String :index
     end
-
   end
 
   def down
